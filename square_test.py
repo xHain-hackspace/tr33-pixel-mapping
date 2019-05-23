@@ -919,7 +919,7 @@ COLORTEMP_NONE = 0
 
 STRIP_ALL = 22
 
-UDP_PACKET_DELAY = 0.001
+UDP_PACKET_DELAY = 0.0003#15
 
 #tree control functions
 
@@ -1036,7 +1036,7 @@ print("Starting effect.")
 fraction_x = 0.15
 fraction_y = 0.5
 square_size = (Y_MAX-Y_MIN)*0.2
-x_step = 0.008
+x_step = 0.01
 y_step = x_step * 1.1
 last_update = -10
 while True:

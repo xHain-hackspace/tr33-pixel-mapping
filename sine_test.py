@@ -3,6 +3,7 @@ import time
 import random
 import cv2
 import numpy as np
+import math
 
 #mapping data
 Y_MIN = 27.0
@@ -985,7 +986,22 @@ def swipe_x(x,fraction,left_color,right_color):
 	else:
 		color = right_color
 	return color
+
+def square(x_led,y_led,x_square,y_square,size_square,color_square,color_background):
+	halfsize = size_square / 2.0
+	if (x_led > (x_square-halfsize)) and (x_led < (x_square+halfsize)) and (y_led > (y_square-halfsize)) and (y_led < (y_square+halfsize)):
+		return color_square
+	else:
+		return color_background
+	return color
 	
+def sine(x_led,y_led,pos_x,pos_y,wavelength,phase,color):
+	x_led = x_led - ((X_MAX-X_MIN)*pos_x+X_MIN)
+	y_led = y_led - ((Y_MAX-Y_MIN)*pos_y+Y_MIN)
+	amplitude = 0.5*(1+math.sin(math.sqrt(y_led*y_led+x_led*x_led)/wavelength*2*math.pi-math.pi*2*phase))
+	return [int(x * amplitude) for x in color]
+
+#framebuffer check for change and send	
 def update_tr33(framebuf,framebuf_old):
 	for current_led in range(len(led_data)):#for all leds
 		if not(framebuf[current_led] == framebuf_old[current_led]):#if color data has changed
@@ -1013,36 +1029,27 @@ update_settings(PALETTE_RAINBOW,COLORTEMP_NONE,MODE_STREAM)
 
 
 #main effect loop
-new_color = [0,255,0]
-old_color = [255,0,0]
+square_color = [0,255,0]
+bg_color = [255,0,0]
 
 #prepare tree with background color
 print("Sending intial background.")
 for current_led in range(len(led_data)):#update all leds
-				framebuffer[current_led] = old_color
+				framebuffer[current_led] = bg_color
 update_tr33(framebuffer,framebuffer_old)#send new frame to tr33
 framebuffer_old = framebuffer[:] #save new buffer for next update
 
-effect_start = time.time()
-fraction = 0
-effect = "up_y"
 print("Starting effect.")
+phase = 0
 while True:
+	
+	#update effect parameters
+	phase = phase + 0.04
+	
 	#update framebuffer with effect
 	start = time.time()
-	if (effect == "up_y") or (effect == "left_x") :
-		fraction_direction = 1-fraction
-		top_color = old_color
-		bottom_color = new_color
-	elif (effect == "down_y") or (effect == "right_x"):
-		fraction_direction = fraction
-		top_color = new_color
-		bottom_color = old_color
 	for current_led in range(len(led_data)):#update all leds according to effect
-		if (effect == "up_y") or (effect == "down_y") :
-			framebuffer[current_led] = swipe_y(led_data[current_led][3],fraction_direction,top_color,bottom_color)
-		elif (effect == "left_x") or (effect == "right_x"):
-			framebuffer[current_led] = swipe_x(led_data[current_led][2],fraction_direction,top_color,bottom_color)
+			framebuffer[current_led] = sine(led_data[current_led][2],led_data[current_led][3],0.5,0.5,50,phase,[255,255,255])
 	end = time.time()
 	print("Updated Framebuffer in "+str(round(1000000*(end - start)))+" us.")			
 	
@@ -1052,23 +1059,6 @@ while True:
 	framebuffer_old = framebuffer[:] #save new buffer for next update
 	end = time.time()
 	print("Updated Tr33 in "+str(round(1000000*(end - start)))+" us.")
-	
-	#update effect position
-	fraction = (time.time()-effect_start)/1
-	if fraction > 1.0:#the effect went over the full screen
-		fraction = 0
-		effect_start = time.time()#reset effect time reference
-		old_color = new_color#new background color should be old swipe color (avoid complete tr33 update)
-		while new_color == old_color:#make sure we select a different color for the next swipe
-			new_color = random.choice([[255,0,0],[0,255,0],[0,0,255],[255,255,0],[0,255,255],[255,0,255]])#set color for next swipe
-		if effect == "up_y":#switch to the next effect
-			effect = "down_y"
-		elif effect == "down_y":
-			effect = "right_x"
-		elif effect == "right_x":
-			effect = "left_x"
-		elif effect == "left_x":
-			effect = "up_y"
 	
 	#allow OS to do stuff for a bit
 	time.sleep(0.001)

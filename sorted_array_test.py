@@ -2006,6 +2006,7 @@ update_settings(PALETTE_RAINBOW,COLORTEMP_NONE,MODE_STREAM)
 		#~ #print(str(branch)+','+str(pixel))
 color = 0
 colorstep = 120
+UDP_DELAY = 0.00015
 while True:
 	
 	color = color+colorstep
@@ -2015,7 +2016,7 @@ while True:
 				#print(sorted_0_array[i][0])
 				#print(sorted_0_array[i][1])
 				set_pixel_stream(sorted_0_array[i][0],sorted_0_array[i][1],color)
-				#time.sleep(0.002)
+				time.sleep(UDP_DELAY)
 	
 	color = color+colorstep	
 	if color>255:
@@ -2024,7 +2025,7 @@ while True:
 				#print(sorted_0_array[i][0])
 				#print(sorted_0_array[i][1])
 				set_pixel_stream(sorted_0_array[i][0],sorted_0_array[i][1],color)
-				#time.sleep(0.002)
+				time.sleep(UDP_DELAY)
 				
 	color = color+colorstep
 	if color>255:
@@ -2033,7 +2034,7 @@ while True:
 				#print(sorted_0_array[i][0])
 				#print(sorted_0_array[i][1])
 				set_pixel_stream(sorted_1_array[i][0],sorted_1_array[i][1],color)
-				#time.sleep(0.002)
+				time.sleep(UDP_DELAY)
 	
 	color = color+colorstep		
 	if color>255:
@@ -2042,7 +2043,7 @@ while True:
 				#print(sorted_0_array[i][0])
 				#print(sorted_0_array[i][1])
 				set_pixel_stream(sorted_1_array[i][0],sorted_1_array[i][1],color)
-				#time.sleep(0.002)				
+				time.sleep(UDP_DELAY)				
 
 #exit	
 
