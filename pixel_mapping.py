@@ -3,14 +3,15 @@ import time
 import random
 import cv2
 import numpy as np
+from itertools import chain
 
 GAUSSIAN_BLUR_SIZE = 11
 
 UDP_IP = "192.168.42.189"
 UDP_PORT = 1337
 
-print "UDP target IP:", UDP_IP
-print "UDP target port:", UDP_PORT
+print ("UDP target IP:", UDP_IP)
+print ("UDP target port:", UDP_PORT)
 
 sock = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
@@ -267,11 +268,11 @@ for i in range (0,1):
 
 #map pixels
 while grabbed:		
-	#~ for trunk in range(0,8):
-		#~ for pixel in range(20,50):
-			#~ detect_led_pixel(trunk,pixel)		
+	for trunk in range(0,8):
+		for pixel in range(20,50):
+			detect_led_pixel(trunk,pixel)		
 
-	for branch in range(9,12)+range(13,20):
+	for branch in chain(range(9,12),range(13,20)):
 		for pixel in range(0,90):
 			detect_led_pixel(branch,pixel)
 
