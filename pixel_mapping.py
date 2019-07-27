@@ -1,21 +1,65 @@
 import socket
+import queue, threading
 import time
 import random
 import cv2
 import numpy as np
 from itertools import chain
+from datetime import datetime
 
-GAUSSIAN_BLUR_SIZE = 11
+#camera to use
+WEBCAM_INDEX = 0#0 first device, 2 second device
 
-UDP_IP = "192.168.42.189"
+#net settings
+UDP_IP = "tr33"
 UDP_PORT = 1337
+COMMAND_ACK_TIMEOUT = 0.5 #seconds
+COMMAND_ACK_BYTE = bytes([42])
+NR_OF_COMMAND_SEND_TRIES = 10
 
-print ("UDP target IP:", UDP_IP)
-print ("UDP target port:", UDP_PORT)
+# strip and pixel ranges to cover
+TRUNK_STRIP_RANGE  = range(0,8)
+TRUNK_PIXEL_RANGE  = range(0,50)
+BRANCH_STRIP_RANGE = chain(range(8,12),range(13,17),range(18,20))#skip strips 12,17
+BRANCH_PIXEL_RANGE = range(0,90)
 
-sock = socket.socket(socket.AF_INET, # Internet
-                     socket.SOCK_DGRAM) # UDP
+#detection settings
+DELAY_AFTER_LED_ON_COMMAND = 0.13# seconds
+GAUSSIAN_BLUR_SIZE = 11
+NR_OF_LED_DETECTION_TRIES = 3 #number of tries to detect an LED before giving up
+THRESHOLDING_PERCENTAGE = 0.0005 #as a factor, not in actual percent
 
+#set up detector for use in led detetction
+# Setup SimpleBlobDetector parameters.
+params = cv2.SimpleBlobDetector_Params()
+ 
+# Change thresholds
+#params.minThreshold = 10;
+#params.maxThreshold = 200;
+ 
+# Filter by Area.
+params.filterByArea = True
+params.minArea = 20
+params.maxArea = 2000
+ 
+# Filter by Circularity
+params.filterByCircularity = False
+params.minCircularity = 0.1
+ 
+# Filter by Convexity
+params.filterByConvexity = False
+params.minConvexity = 0.87
+ 
+# Filter by Inertia
+params.filterByInertia = False
+params.minInertiaRatio = 0.01
+
+params.minRepeatability = 2
+
+detector = cv2.SimpleBlobDetector_create(params)#finally, create detector to be used later in functions
+
+
+#tree command constants
 COMMAND_DISABLE = 0
 COMMAND_COLOR = 1
 COMMAND_UPDATE_SETTINGS = 101
@@ -32,10 +76,60 @@ COLORTEMP_NONE = 0
 
 STRIP_ALL = 22
 
-#tree control functions
+#exception class for failed tr33 commmands
+class Tr33CommandFailedException(Exception):
+	pass
 
-def send_command(command):                     
-	sock.sendto(command, (UDP_IP, UDP_PORT))
+# bufferless VideoCapture, stolen from Ulrich Stern's post (stackoverflow thread)
+class BufferlessVideoCapture:
+
+  def __init__(self, name):
+    self.cap = cv2.VideoCapture(name)
+    self.q = queue.Queue()
+    t = threading.Thread(target=self._reader)
+    t.daemon = True
+    t.start()
+
+  # read frames as soon as they are available, keeping only most recent one
+  def _reader(self):
+    while True:
+      ret, frame = self.cap.read()
+      if not ret:
+        break
+      if not self.q.empty():
+        try:
+          self.q.get_nowait()   # discard previous (unprocessed) frame
+        except queue.Empty:
+          pass
+      self.q.put(frame)
+
+  def read(self):
+    return self.q.get()
+
+#tree control functions
+def send_command(command): 
+	remaining_tries = NR_OF_COMMAND_SEND_TRIES
+	while (remaining_tries > 0):
+		remaining_tries -= 1
+		if send_bytes_with_ack(command): return #send was succesful, return
+		print("Sending command failed, retrying")
+	raise Tr33CommandFailedException #if we exceeded the number of tries raise a custom exception
+
+def send_bytes_with_ack(bytes_to_send):
+	sock.settimeout(COMMAND_ACK_TIMEOUT)#set timeout             
+	sock.sendto(bytes_to_send, (UDP_IP, UDP_PORT))#send data
+	try:
+		response_byte = sock.recv(1)#block until ack byte is received or timeout error is raised
+		if response_byte == COMMAND_ACK_BYTE:#check response
+			#print("Response ACK OK.")
+			return True
+		else:
+			print("Response ACK Wrong.")
+			return False
+	except socket.timeout:#catch timeout exception
+		print("Timeout occured while waiting for command ACK.")
+		return False
+			
 	
 def set_color(index,strip,hue,brightness):
 	command_bytes = bytearray()
@@ -84,15 +178,10 @@ def disable_all():
 		
 #camera functions
 
-def flush_frames():
-	for i in range(0,6):#hack to flush the read buffer
-			vc.read()
-
 def averaged_frame(frames_to_average):
-	flush_frames()
 	(rAvg, gAvg, bAvg) = (None, None, None)
 	for frame_nr in range(0, frames_to_average):
-		grabbed, frame = vc.read()#read next frame
+		frame = vc.read()#read next frame
 		(B, G, R) = cv2.split(frame.astype("float"))#split to components   
 	
 		# if the frame averages are None, initialize them
@@ -110,53 +199,25 @@ def averaged_frame(frames_to_average):
 	
 	avg = cv2.merge([bAvg, gAvg, rAvg]).astype("float")
 	return avg
-	
-#set up detector for use in led detetction
-# Setup SimpleBlobDetector parameters.
-params = cv2.SimpleBlobDetector_Params()
- 
-# Change thresholds
-#params.minThreshold = 10;
-#params.maxThreshold = 200;
- 
-# Filter by Area.
-params.filterByArea = True
-params.minArea = 20
-params.maxArea = 2000
- 
-# Filter by Circularity
-params.filterByCircularity = False
-params.minCircularity = 0.1
- 
-# Filter by Convexity
-params.filterByConvexity = False
-params.minConvexity = 0.87
- 
-# Filter by Inertia
-params.filterByInertia = False
-params.minInertiaRatio = 0.01
+		
+def detect_led_pixel(strip,pixel):	
+			#start_time = time.time()		
+			set_pixel_rgb_stream(strip,pixel,255,255,255)#set target led on
+			#TODO: get rid of the following delay by proper ackknowedgement implementation on tr33				
+			time.sleep(DELAY_AFTER_LED_ON_COMMAND)#additional delay for esp32 to actually update the pixel
+			#print("Setting LED took "+str(int(1000*(time.time()-start_time)))+" ms")
 
-params.minRepeatability = 2
-
-detector = cv2.SimpleBlobDetector_create(params) #cv2.SimpleBlobDetector()	
-	
-def detect_led_pixel(strip,pixel):
-			
-			#get ref frame (can be dropped if lighting is stable long-term)
-			#~ flush_frames()
-			#~ grabbed, ref_frame_raw = vc.read();
-			#~ ref_frame = cv2.GaussianBlur(cv2.cvtColor(ref_frame_raw, cv2.COLOR_BGR2GRAY),(GAUSSIAN_BLUR_SIZE,GAUSSIAN_BLUR_SIZE),cv2.BORDER_DEFAULT);
-			
-			set_pixel_rgb_stream(strip,pixel,255,255,255)
-				
-			flush_frames()
-			grabbed,current_frame = vc.read();
+			#start_time = time.time()+str(int(1000*
+			current_frame = vc.read();
+			set_pixel_rgb_stream(strip,pixel,0,0,0) # switch target led off
 			current_frame = cv2.cvtColor(current_frame, cv2.COLOR_BGR2GRAY);#bw conversion
 			blurred_frame = cv2.GaussianBlur(current_frame,(GAUSSIAN_BLUR_SIZE,GAUSSIAN_BLUR_SIZE),cv2.BORDER_DEFAULT)
 			diff_frame = cv2.absdiff(blurred_frame, ref_frame)#remove reference
+			#print("Getting frame and difference calculation took "+str(int(1000*(time.time()-start_time)))+" ms")
 			
+			#start_time = time.time()
 			#calculate threshold
-			hi_percentage = 0.0005 # we want the hi_percentage brightest pixels
+			hi_percentage = THRESHOLDING_PERCENTAGE # we want the hi_percentage brightest pixels
 			# * histogram
 			hist = cv2.calcHist([diff_frame], [0], None, [256], [0, 256]).flatten()
 			# * find brightness threshold
@@ -173,7 +234,10 @@ def detect_led_pixel(strip,pixel):
 				hi_thresh = 0	
 					
 			thr,thresholded_frame = cv2.threshold(diff_frame, hi_thresh, 255, cv2.THRESH_BINARY_INV);#apply threshold	
+			#print("Thresholding took "+str(int(1000*(time.time()-start_time)))+" ms")
 			thresholded_frame_blurred = cv2.GaussianBlur(thresholded_frame,(GAUSSIAN_BLUR_SIZE,GAUSSIAN_BLUR_SIZE),cv2.BORDER_DEFAULT)
+			
+			#start_time = time.time()
 			keypoints = detector.detect(thresholded_frame_blurred)#detect blobs
 			im_with_all_keypoints = cv2.drawKeypoints(thresholded_frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 			
@@ -188,8 +252,9 @@ def detect_led_pixel(strip,pixel):
 						main_keypoint_index = keypoint_index
 						
 			main_keypoint = keypoints[main_keypoint_index:(main_keypoint_index+1)]
+			#print("Keypoint detection took "+str(int(1000*(time.time()-start_time)))+" ms")
 			
-			
+			#start_time = time.time()
 			im_with_keypoints_highlight = cv2.drawKeypoints(im_with_all_keypoints, main_keypoint, np.array([]), (0,255,0), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 			
 			live_with_keypoints =  cv2.drawKeypoints(current_frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
@@ -198,35 +263,33 @@ def detect_led_pixel(strip,pixel):
 			diff_with_keypoints =  cv2.drawKeypoints(diff_frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 			diff_with_keypoints = cv2.drawKeypoints(diff_with_keypoints, main_keypoint, np.array([]), (0,255,0), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 					
-			set_pixel_rgb_stream(strip,pixel,0,0,0)
-			set_pixel_rgb_stream(strip,pixel,0,0,0)
-			set_pixel_rgb_stream(strip,pixel,0,0,0)
-			time.sleep(0.2)
 			
-			cv2.imshow("preview", live_with_keypoints.astype("uint8"))
-			cv2.imshow("preview2", diff_with_keypoints.astype("uint8"))
-			cv2.imshow("preview3", im_with_keypoints_highlight.astype("uint8"))
+			
+			cv2.imshow("live_view", live_with_keypoints.astype("uint8"))
+			cv2.imshow("difference_image", diff_with_keypoints.astype("uint8"))
+			cv2.imshow("thresholded_image", im_with_keypoints_highlight.astype("uint8"))
 							
-			cv2.waitKey(1)
-			if (len(keypoints) == 0):
-				result_str=str(strip)+","+str(pixel)+",-1,-1,NO_LED_FOUND"
-				print(result_str)
-				text_file.write(result_str+'\n')
-			elif (len(keypoints) == 1):
-				result_str=str(strip)+","+str(pixel)+","+str(keypoints[0].pt[0])+","+str(keypoints[0].pt[1])+",ONE_LED_FOUND"
-				print(result_str)
-				text_file.write(result_str+'\n')
+			cv2.waitKey(1)#updates images, waits for 1 ms
+			#print("Preview update took "+str(int(1000*(time.time()-start_time)))+" ms")
+			nr_of_points =len(keypoints)
+			if (nr_of_points == 0):
+				return nr_of_points, -1, -1  #return nr of points, -1 to indicate failure to find anything
 			else:
-				result_str=str(strip)+","+str(pixel)+","+str(keypoints[0].pt[0])+","+str(keypoints[0].pt[1])+",MULTIPLE_LEDS_FOUND"
-				print(result_str)
-				text_file.write(result_str+'\n')
+				return nr_of_points, keypoints[0].pt[0], keypoints[0].pt[1] #return nr of points, x and y coordinate of main point
 	
 	
 #start main code
 
+#set up udp
+print ("UDP target IP:", UDP_IP)
+print ("UDP target port:", UDP_PORT)
+sock = socket.socket(socket.AF_INET, # Internet
+                     socket.SOCK_DGRAM) # UDP
+
 #blink and reset tree pixels
-text_file = open("Log.txt", "w")
-text_file.write("***Starting new run... ***\n")
+text_file = open("mapping.h", "w")
+text_file.write("//Mapping started on "+datetime.now().strftime("%d.%m.%Y, %H:%M:%S")+"\n")
+text_file.write("static float mapping[][4] = {\n")
 print("[INFO] setting initial tree configuration...")
 update_settings(PALETTE_RAINBOW,COLORTEMP_NONE,MODE_COMMANDS)
 set_color(0,STRIP_ALL,80,2)
@@ -234,26 +297,19 @@ time.sleep(0.1)
 disable_all()	
 update_settings(PALETTE_RAINBOW,COLORTEMP_NONE,MODE_STREAM)
 
-cv2.namedWindow("preview")
-cv2.namedWindow("preview2")
-cv2.namedWindow("preview3")
+cv2.namedWindow("live_view")
+cv2.namedWindow("difference_image")
+cv2.namedWindow("thresholded_image")
 print("[INFO] opening video hardware...")
-vc = cv2.VideoCapture(0)
-
-if vc.isOpened(): #check hardware status
-	print("[INFO] opened video hardware successfully")
-	grabbed, frame = vc.read()
-else:
-	print("[ERROR] opening video hardware failed")
-	raise SystemExit	
+vc = BufferlessVideoCapture(WEBCAM_INDEX)
 
 #live view for setting up
-print("[INFO] set up camera, press s t acquire reference and start mapping")
-while grabbed:
+print("[INFO] set up camera, press s to acquire reference and start mapping")
+while True:
 	
-	grabbed, live_frame = vc.read(); #get new live frame
+	live_frame = vc.read(); #get new live frame
 	live_frame = cv2.cvtColor(live_frame, cv2.COLOR_BGR2GRAY);
-	cv2.imshow("preview", live_frame)	
+	cv2.imshow("live_view", live_frame)	
 	
 	key = cv2.waitKey(20)
 	if key == ord('s'): # exit live view on s key
@@ -261,26 +317,69 @@ while grabbed:
 
 #get reference frame
 print("[INFO] acquiring reference frame")
-for i in range (0,1):
-	flush_frames()
-	grabbed, ref_frame_raw = vc.read();
+for i in range (0,5):
+	ref_frame_raw = vc.read();
 	ref_frame = cv2.GaussianBlur(cv2.cvtColor(ref_frame_raw, cv2.COLOR_BGR2GRAY),(GAUSSIAN_BLUR_SIZE,GAUSSIAN_BLUR_SIZE),cv2.BORDER_DEFAULT);
 
 #map pixels
-while grabbed:		
-	for trunk in range(0,8):
-		for pixel in range(20,50):
-			detect_led_pixel(trunk,pixel)		
+x_min = None
+x_max = None
+y_min = None
+y_max = None
+mapping_size = 0
 
-	for branch in chain(range(9,12),range(13,20)):
-		for pixel in range(0,90):
-			detect_led_pixel(branch,pixel)
+for current_section in ["branches","trunk"]:
+	if current_section == "branches":
+		strip_range = BRANCH_STRIP_RANGE
+		pixel_range = BRANCH_PIXEL_RANGE
+	elif current_section == "trunk":
+		strip_range = TRUNK_STRIP_RANGE
+		pixel_range = TRUNK_PIXEL_RANGE
+
+	for current_strip in strip_range:
+		for current_pixel in pixel_range:
+			tries = 0
+			while tries < NR_OF_LED_DETECTION_TRIES:
+				tries = tries + 1
+				#start_time = time.time()
+				nr_of_points, x_pos, y_pos = detect_led_pixel(current_strip,current_pixel)					
+				#print("Detection took "+str(int(1000*(time.time()-start_time)))+" ms")
+				if nr_of_points == 0:
+					print("No point detected. Trying again...")
+				else:
+					print ("section "+current_section+", strip "+str(current_strip)+", pixel "+str(current_pixel)+": "+str(nr_of_points) + " points detetected, main point at "+str(x_pos)+", " + str(y_pos))
+					
+					#write out the data to the file
+					if (mapping_size != 0):#skip the comma for the very first entry, always use it for all other entrys
+						text_file.write(",\n")
+					text_file.write("{"+str(current_strip)+","+str(current_pixel)+","+str(x_pos)+"," + str(y_pos)+"}")
+					
+					#update min/max and size for detected pixels
+					if (mapping_size == 0):#set min/max to the values of the very first pixel
+						x_min = x_pos
+						x_max = x_pos
+						y_min = y_pos
+						y_max = y_pos
+					else: #or else update min/max normally
+						if x_pos < x_min: x_min = x_pos
+						if x_pos > x_max: x_max = x_pos
+						if y_pos < y_min: y_min = y_pos
+						if y_pos > y_max: y_max = y_pos
+					mapping_size += 1
+					break#break out of retry loop
 
 #exit	
-cv2.destroyWindow("preview")
-cv2.destroyWindow("preview2")
-cv2.destroyWindow("preview3")
-print("[INFO] exiting...")
-text_file.write("Done, exiting.\n")
+cv2.destroyWindow("live_view")
+cv2.destroyWindow("difference_image")
+cv2.destroyWindow("thresholded_image")
+#write file footer content
+text_file.write("};\n")
+text_file.write("#define X_MIN "+str(x_min)+"\n")
+text_file.write("#define X_MAX "+str(x_max)+"\n")
+text_file.write("#define Y_MIN "+str(y_min)+"\n")
+text_file.write("#define Y_MAX "+str(y_max)+"\n")
+text_file.write("#define MAPPING_SIZE "+str(mapping_size)+"\n")
+text_file.write("//Mapping finished on "+datetime.now().strftime("%d.%m.%Y, %H:%M:%S")+"\n")
 text_file.close()
+print("[INFO] exiting...")
 
