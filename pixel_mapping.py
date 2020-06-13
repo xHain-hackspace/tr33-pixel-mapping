@@ -8,7 +8,7 @@ from itertools import chain
 from datetime import datetime
 
 #camera to use
-WEBCAM_INDEX = 0#0 first device, 2 second device
+WEBCAM_INDEX = 2#0 first device, 2 second device
 
 #net settings
 UDP_IP = "tr33"
@@ -18,6 +18,8 @@ COMMAND_ACK_BYTE = bytes([42])
 NR_OF_COMMAND_SEND_TRIES = 10
 
 # strip and pixel ranges to cover
+STRIP_RANGE = range(0,1)
+PIXEL_RANGE = range(0,300)
 TRUNK_STRIP_RANGE  = range(0,8)
 TRUNK_PIXEL_RANGE  = range(0,50)
 BRANCH_STRIP_RANGE = chain(range(8,12),range(13,17),range(18,20))#skip strips 12,17
@@ -149,21 +151,25 @@ def update_settings(palette,color_temp, display_mode):
 	command_bytes.append(display_mode)
 	send_command(command_bytes)	
 	
-def set_pixel_stream(strip,pixel, hue):
+def set_pixel_stream(strip, pixel, hue):
+	pixel_bytes = pixel.to_bytes(2, byteorder="big")
 	command_bytes = bytearray()
 	command_bytes.append(0)
 	command_bytes.append(COMMAND_PIXEL)
 	command_bytes.append(strip)
-	command_bytes.append(pixel)
+	command_bytes.append(pixel_bytes[0])
+	command_bytes.append(pixel_bytes[1])
 	command_bytes.append(hue)
 	send_command(command_bytes)	
 	
 def set_pixel_rgb_stream(strip,pixel, red, green, blue):
+	pixel_bytes = pixel.to_bytes(2, byteorder="big")
 	command_bytes = bytearray()
 	command_bytes.append(0)
 	command_bytes.append(COMMAND_PIXEL_RGB)
 	command_bytes.append(strip)
-	command_bytes.append(pixel)
+	command_bytes.append(pixel_bytes[0])
+	command_bytes.append(pixel_bytes[1])
 	command_bytes.append(red)
 	command_bytes.append(green)
 	command_bytes.append(blue)
@@ -328,13 +334,17 @@ y_min = None
 y_max = None
 mapping_size = 0
 
-for current_section in ["branches","trunk"]:
+# for current_section in ["branches","trunk"]:
+for current_section in ["strip"]:
 	if current_section == "branches":
 		strip_range = BRANCH_STRIP_RANGE
 		pixel_range = BRANCH_PIXEL_RANGE
 	elif current_section == "trunk":
 		strip_range = TRUNK_STRIP_RANGE
 		pixel_range = TRUNK_PIXEL_RANGE
+	elif current_section == "strip":
+		strip_range = STRIP_RANGE
+		pixel_range = PIXEL_RANGE
 
 	for current_strip in strip_range:
 		for current_pixel in pixel_range:
