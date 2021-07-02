@@ -4,14 +4,17 @@ import time
 import random
 import cv2
 import numpy as np
+import command_schemas_pb2
+import pprint
 from itertools import chain
 from datetime import datetime
 
 #camera to use
-WEBCAM_INDEX = 2#0 first device, 2 second device
+WEBCAM_INDEX = 2# 0 first device, 2 second device
 
 #net settings
-UDP_IP = "tr33"
+# UDP_IP = "127.0.0.1"
+UDP_IP = "tr33.lan.xhain.space"
 UDP_PORT = 1337
 COMMAND_ACK_TIMEOUT = 0.5 #seconds
 COMMAND_ACK_BYTE = bytes([42])
@@ -19,7 +22,7 @@ NR_OF_COMMAND_SEND_TRIES = 10
 
 # strip and pixel ranges to cover
 STRIP_RANGE = range(0,1)
-PIXEL_RANGE = range(0,300)
+PIXEL_RANGE = range(0,299)
 TRUNK_STRIP_RANGE  = range(0,8)
 TRUNK_PIXEL_RANGE  = range(0,50)
 BRANCH_STRIP_RANGE = chain(range(8,12),range(13,17),range(18,20))#skip strips 12,17
@@ -133,54 +136,51 @@ def send_bytes_with_ack(bytes_to_send):
 		return False
 			
 	
-def set_color(index,strip,hue,brightness):
-	command_bytes = bytearray()
-	command_bytes.append(index)
-	command_bytes.append(COMMAND_COLOR)
-	command_bytes.append(strip)
-	command_bytes.append(hue)
-	command_bytes.append(brightness)
-	send_command(command_bytes)
+def set_color(strip,hue):
+	single_color = command_schemas_pb2.SingleColor()
+	single_color.color = hue
+	cmd = command_schemas_pb2.CommandParams(single_color=single_color)		
+	cmd.index = 0
+	send_command(cmd.SerializeToString())
 	
-def update_settings(palette,color_temp, display_mode):
-	command_bytes = bytearray()
-	command_bytes.append(0)
-	command_bytes.append(COMMAND_UPDATE_SETTINGS)
-	command_bytes.append(palette)
-	command_bytes.append(color_temp)
-	command_bytes.append(display_mode)
-	send_command(command_bytes)	
+# def update_settings(palette,color_temp, display_mode):
+# 	command_bytes = bytearray()
+# 	command_bytes.append(0)
+# 	command_bytes.append(COMMAND_UPDATE_SETTINGS)
+# 	command_bytes.append(palette)
+# 	command_bytes.append(color_temp)
+# 	command_bytes.append(display_mode)
+# 	send_command(command_bytes)	
 	
-def set_pixel_stream(strip, pixel, hue):
-	pixel_bytes = pixel.to_bytes(2, byteorder="big")
-	command_bytes = bytearray()
-	command_bytes.append(0)
-	command_bytes.append(COMMAND_PIXEL)
-	command_bytes.append(strip)
-	command_bytes.append(pixel_bytes[0])
-	command_bytes.append(pixel_bytes[1])
-	command_bytes.append(hue)
-	send_command(command_bytes)	
+# def set_pixel_stream(strip, pixel, hue):
+# 	pixel_bytes = pixel.to_bytes(2, byteorder="big")
+# 	command_bytes = bytearray()
+# 	command_bytes.append(0)
+# 	command_bytes.append(COMMAND_PIXEL)
+# 	command_bytes.append(strip)
+# 	command_bytes.append(pixel_bytes[0])
+# 	command_bytes.append(pixel_bytes[1])
+# 	command_bytes.append(hue)
+# 	send_command(command_bytes)	
 	
 def set_pixel_rgb_stream(strip,pixel, red, green, blue):
-	pixel_bytes = pixel.to_bytes(2, byteorder="big")
-	command_bytes = bytearray()
-	command_bytes.append(0)
-	command_bytes.append(COMMAND_PIXEL_RGB)
-	command_bytes.append(strip)
-	command_bytes.append(pixel_bytes[0])
-	command_bytes.append(pixel_bytes[1])
-	command_bytes.append(red)
-	command_bytes.append(green)
-	command_bytes.append(blue)
-	send_command(command_bytes)	
+	pixel_rgb = command_schemas_pb2.PixelRGB()
+	pixel_rgb.red = 255
+	pixel_rgb.blue = 255
+	pixel_rgb.green = 255
+	pixel_rgb.led_index = pixel
+	cmd = command_schemas_pb2.CommandParams(pixel_rgb=pixel_rgb)		
+	cmd.index = 0
+	cmd.strip_index = strip
+	send_command(cmd.SerializeToString())
 	
 def disable_all():
-	for index in range(0,10):
-		command_bytes = bytearray()
-		command_bytes.append(index)
-		command_bytes.append(COMMAND_DISABLE)
-		send_command(command_bytes)
+	for index in range(0,16):
+		single_color = command_schemas_pb2.SingleColor()
+		cmd = command_schemas_pb2.CommandParams(single_color=single_color)		
+		cmd.index = index
+		cmd.enabled = False
+		send_command(cmd.SerializeToString())
 		
 #camera functions
 
@@ -206,7 +206,7 @@ def averaged_frame(frames_to_average):
 	avg = cv2.merge([bAvg, gAvg, rAvg]).astype("float")
 	return avg
 		
-def detect_led_pixel(strip,pixel):	
+def detect_led_pixel(strip, pixel):	
 			#start_time = time.time()		
 			set_pixel_rgb_stream(strip,pixel,255,255,255)#set target led on
 			#TODO: get rid of the following delay by proper ackknowedgement implementation on tr33				
@@ -295,13 +295,7 @@ sock = socket.socket(socket.AF_INET, # Internet
 #blink and reset tree pixels
 text_file = open("mapping.h", "w")
 text_file.write("//Mapping started on "+datetime.now().strftime("%d.%m.%Y, %H:%M:%S")+"\n")
-text_file.write("static float mapping[][4] = {\n")
-print("[INFO] setting initial tree configuration...")
-update_settings(PALETTE_RAINBOW,COLORTEMP_NONE,MODE_COMMANDS)
-set_color(0,STRIP_ALL,80,2)
-time.sleep(0.1)
-disable_all()	
-update_settings(PALETTE_RAINBOW,COLORTEMP_NONE,MODE_STREAM)
+text_file.write("float LedStructure::mapping[][4] = {\n")
 
 cv2.namedWindow("live_view")
 cv2.namedWindow("difference_image")
@@ -310,6 +304,7 @@ print("[INFO] opening video hardware...")
 vc = BufferlessVideoCapture(WEBCAM_INDEX)
 
 #live view for setting up
+set_color(0, 42)
 print("[INFO] set up camera, press s to acquire reference and start mapping")
 while True:
 	
@@ -320,6 +315,9 @@ while True:
 	key = cv2.waitKey(20)
 	if key == ord('s'): # exit live view on s key
 		break
+
+disable_all()
+time.sleep(0.5)
 
 #get reference frame
 print("[INFO] acquiring reference frame")
@@ -384,10 +382,10 @@ cv2.destroyWindow("difference_image")
 cv2.destroyWindow("thresholded_image")
 #write file footer content
 text_file.write("};\n")
-text_file.write("#define X_MIN "+str(x_min)+"\n")
-text_file.write("#define X_MAX "+str(x_max)+"\n")
-text_file.write("#define Y_MIN "+str(y_min)+"\n")
-text_file.write("#define Y_MAX "+str(y_max)+"\n")
+text_file.write("#define MAPPING_X_MIN "+str(x_min)+"\n")
+text_file.write("#define MAPPING_X_MAX "+str(x_max)+"\n")
+text_file.write("#define MAPPING_Y_MIN "+str(y_min)+"\n")
+text_file.write("#define MAPPING_Y_MAX "+str(y_max)+"\n")
 text_file.write("#define MAPPING_SIZE "+str(mapping_size)+"\n")
 text_file.write("//Mapping finished on "+datetime.now().strftime("%d.%m.%Y, %H:%M:%S")+"\n")
 text_file.close()
