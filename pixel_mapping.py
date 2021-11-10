@@ -332,8 +332,8 @@ y_min = None
 y_max = None
 mapping_size = 0
 
-# for current_section in ["branches","trunk"]:
-for current_section in ["strip"]:
+for current_section in ["branches","trunk"]:
+# for current_section in ["strip"]:
 	if current_section == "branches":
 		strip_range = BRANCH_STRIP_RANGE
 		pixel_range = BRANCH_PIXEL_RANGE
