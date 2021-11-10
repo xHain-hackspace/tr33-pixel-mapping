@@ -14,18 +14,20 @@ WEBCAM_INDEX = 2# 0 first device, 2 second device
 
 #net settings
 # UDP_IP = "127.0.0.1"
-UDP_IP = "tr33.lan.xhain.space"
+UDP_IP = "192.168.42.217"
 UDP_PORT = 1337
 COMMAND_ACK_TIMEOUT = 0.5 #seconds
 COMMAND_ACK_BYTE = bytes([42])
-NR_OF_COMMAND_SEND_TRIES = 10
+NR_OF_COMMAND_SEND_TRIES = 50
 
 # strip and pixel ranges to cover
 STRIP_RANGE = range(0,1)
 PIXEL_RANGE = range(0,299)
-TRUNK_STRIP_RANGE  = range(0,8)
+TRUNK_STRIP_RANGE  = range(3,11)
 TRUNK_PIXEL_RANGE  = range(0,50)
-BRANCH_STRIP_RANGE = chain(range(8,12),range(13,17),range(18,20))#skip strips 12,17
+BRANCH_STRIP_RANGE = chain(range(11, 15), range(16, 20), range(21, 23))  # skip strips 12,17
+
+# BRANCH_STRIP_RANGE = range(12,24) #skip strips 12,17
 BRANCH_PIXEL_RANGE = range(0,90)
 
 #detection settings
@@ -139,7 +141,7 @@ def send_bytes_with_ack(bytes_to_send):
 def set_color(strip,hue):
 	single_color = command_schemas_pb2.SingleColor()
 	single_color.color = hue
-	cmd = command_schemas_pb2.CommandParams(single_color=single_color)		
+	cmd = command_schemas_pb2.CommandParams(single_color=single_color, enabled=True, brightness=255, strip_index=0, color_palette=command_schemas_pb2.RAINBOW)		
 	cmd.index = 0
 	send_command(cmd.SerializeToString())
 	
@@ -169,18 +171,24 @@ def set_pixel_rgb_stream(strip,pixel, red, green, blue):
 	pixel_rgb.blue = 255
 	pixel_rgb.green = 255
 	pixel_rgb.led_index = pixel
-	cmd = command_schemas_pb2.CommandParams(pixel_rgb=pixel_rgb)		
+	cmd = command_schemas_pb2.CommandParams(
+		pixel_rgb=pixel_rgb, enabled=True, brightness=255, strip_index=0, color_palette=command_schemas_pb2.RAINBOW)
 	cmd.index = 0
 	cmd.strip_index = strip
 	send_command(cmd.SerializeToString())
 	
 def disable_all():
-	for index in range(0,16):
-		single_color = command_schemas_pb2.SingleColor()
-		cmd = command_schemas_pb2.CommandParams(single_color=single_color)		
-		cmd.index = index
-		cmd.enabled = False
+	for index in range(0,15):
+		single_color = command_schemas_pb2.SingleColor(color=150)
+		cmd = command_schemas_pb2.CommandParams(
+			index=index, 
+			single_color=single_color, 
+			brightness=255, 
+			strip_index=0, 
+			color_palette=command_schemas_pb2.RAINBOW,
+			enabled=False)
 		send_command(cmd.SerializeToString())
+		time.sleep(0.05)
 		
 #camera functions
 
@@ -304,7 +312,7 @@ print("[INFO] opening video hardware...")
 vc = BufferlessVideoCapture(WEBCAM_INDEX)
 
 #live view for setting up
-set_color(0, 42)
+set_color(0, 150)
 print("[INFO] set up camera, press s to acquire reference and start mapping")
 while True:
 	

@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto2',
   serialized_options=None,
-  serialized_pb=_b('\n\x15\x63ommand_schemas.proto\"\xa2\x05\n\rCommandParams\x12\r\n\x05index\x18\x01 \x02(\x05\x12\x15\n\x07\x65nabled\x18\x02 \x01(\x08:\x04true\x12\x17\n\nbrightness\x18\x03 \x01(\x05:\x03\x32\x35\x35\x12\x16\n\x0bstrip_index\x18\x04 \x01(\x05:\x01\x30\x12-\n\rcolor_palette\x18\x05 \x01(\x0e\x32\r.ColorPalette:\x07RAINBOW\x12\x17\n\x05white\x18\x06 \x01(\x0b\x32\x06.WhiteH\x00\x12$\n\x0csingle_color\x18\x07 \x01(\x0b\x32\x0c.SingleColorH\x00\x12\x17\n\x05pixel\x18\x08 \x01(\x0b\x32\x06.PixelH\x00\x12\x1e\n\tpixel_rgb\x18\t \x01(\x0b\x32\t.PixelRGBH\x00\x12\x1b\n\x07rainbow\x18\n \x01(\x0b\x32\x08.RainbowH\x00\x12\x1b\n\x07sparkle\x18\x0b \x01(\x0b\x32\x08.SparkleH\x00\x12*\n\x0f\x66licker_sparkle\x18\x0c \x01(\x0b\x32\x0f.FlickerSparkleH\x00\x12\x1e\n\tping_pong\x18\r \x01(\x0b\x32\t.PingPongH\x00\x12\x19\n\x06render\x18\x0e \x01(\x0b\x32\x07.RenderH\x00\x12\x15\n\x04rain\x18\x0f \x01(\x0b\x32\x05.RainH\x00\x12%\n\x0ckaleidoscope\x18\x10 \x01(\x0b\x32\r.KaleidoscopeH\x00\x12$\n\x0cmapped_shape\x18\x11 \x01(\x0b\x32\x0c.MappedShapeH\x00\x12$\n\x0cmapped_slope\x18\x12 \x01(\x0b\x32\x0c.MappedSlopeH\x00\x12,\n\x10mapped_particles\x18\x13 \x01(\x0b\x32\x10.MappedParticlesH\x00\x12+\n\x10mapped_ping_pong\x18\x14 \x01(\x0b\x32\x0f.MappedPingPongH\x00\x42\r\n\x0btype_params\"%\n\x05White\x12\x1c\n\x11\x63olor_temperature\x18\x01 \x01(\x05:\x01\x30\"!\n\x0bSingleColor\x12\x12\n\x05\x63olor\x18\x01 \x01(\x05:\x03\x32\x32\x36\"/\n\x05Pixel\x12\x10\n\x05\x63olor\x18\x01 \x01(\x05:\x01\x30\x12\x14\n\tled_index\x18\x02 \x01(\x05:\x01\x30\"Y\n\x08PixelRGB\x12\x10\n\x03red\x18\x01 \x01(\x05:\x03\x31\x33\x30\x12\x12\n\x05green\x18\x02 \x01(\x05:\x03\x31\x33\x30\x12\x11\n\x04\x62lue\x18\x03 \x01(\x05:\x03\x31\x33\x30\x12\x14\n\tled_index\x18\x04 \x01(\x05:\x01\x30\"O\n\x07Rainbow\x12\x11\n\x05speed\x18\x01 \x01(\x05:\x02\x33\x30\x12\x16\n\twave_size\x18\x02 \x01(\x05:\x03\x31\x30\x30\x12\x19\n\x0crainbow_size\x18\x03 \x01(\x05:\x03\x31\x35\x30\"f\n\x07Sparkle\x12\x10\n\x05\x63olor\x18\x01 \x01(\x05:\x01\x31\x12\x19\n\rsparkle_width\x18\x02 \x01(\x05:\x02\x31\x35\x12\x17\n\x0bsparle_rate\x18\x03 \x01(\x05:\x02\x31\x30\x12\x15\n\x08\x64uration\x18\x04 \x01(\x05:\x03\x31\x30\x30\"\xc4\x01\n\x0e\x46lickerSparkle\x12\x10\n\x05\x63olor\x18\x01 \x01(\x05:\x01\x31\x12\x19\n\rsparkle_width\x18\x02 \x01(\x05:\x02\x39\x30\x12\x1f\n\x12sparles_per_second\x18\x03 \x01(\x05:\x03\x32\x31\x35\x12\x13\n\x08\x64uration\x18\x04 \x01(\x05:\x01\x38\x12\x18\n\rflicker_delay\x18\x05 \x01(\x05:\x01\x37\x12\x1b\n\x0e\x66licker_window\x18\x06 \x01(\x05:\x03\x31\x31\x39\x12\x18\n\x0cmax_flickers\x18\x07 \x01(\x05:\x02\x38\x30\"\xd2\x01\n\x08PingPong\x12\x1d\n\x05shape\x18\x01 \x01(\x0e\x32\x08.Shape1D:\x04\x42\x41LL\x12\'\n\x08movement\x18\x02 \x01(\x0e\x32\r.MovementType:\x06LINEAR\x12\x11\n\x05\x63olor\x18\x03 \x01(\x05:\x02\x36\x35\x12\x11\n\x05width\x18\x04 \x01(\x05:\x02\x32\x30\x12\x17\n\nmax_height\x18\x05 \x01(\x05:\x03\x32\x35\x35\x12\x10\n\x05\x63ount\x18\x06 \x01(\x05:\x01\x31\x12\x17\n\tperiod_ms\x18\x07 \x01(\x05:\x04\x36\x30\x30\x30\x12\x14\n\toffset_ms\x18\x08 \x01(\x05:\x01\x30\"d\n\x06Render\x12\x1d\n\x05shape\x18\x01 \x01(\x0e\x32\x08.Shape1D:\x04\x42\x41LL\x12\x12\n\x05\x63olor\x18\x02 \x01(\x05:\x03\x32\x31\x30\x12\x14\n\x08position\x18\x03 \x01(\x05:\x02\x32\x30\x12\x11\n\x05width\x18\x04 \x01(\x05:\x02\x32\x30\"]\n\x04Rain\x12\x10\n\x05\x63olor\x18\x01 \x01(\x05:\x01\x31\x12\x11\n\x05width\x18\x02 \x01(\x05:\x02\x31\x35\x12\x18\n\x0c\x64rop_density\x18\x03 \x01(\x05:\x02\x31\x30\x12\x16\n\ndrop_speed\x18\x04 \x01(\x05:\x02\x31\x30\"\x0e\n\x0cKaleidoscope\"\x9f\x01\n\x0bMappedSlope\x12\x10\n\x05\x63olor\x18\x01 \x01(\x05:\x01\x31\x12$\n\nslope_type\x18\x02 \x01(\x0e\x32\n.SlopeType:\x04\x46ILL\x12\r\n\x02x1\x18\x03 \x01(\x05:\x01\x30\x12\r\n\x02y1\x18\x04 \x01(\x05:\x01\x30\x12\x0f\n\x02x2\x18\x05 \x01(\x05:\x03\x32\x35\x35\x12\x0f\n\x02y2\x18\x06 \x01(\x05:\x03\x32\x35\x35\x12\x18\n\rfade_distance\x18\x07 \x01(\x05:\x01\x35\"\x8d\x01\n\x0bMappedShape\x12\x10\n\x05\x63olor\x18\x01 \x01(\x05:\x01\x31\x12\x1f\n\x05shape\x18\x02 \x01(\x0e\x32\x08.Shape2D:\x06SQUARE\x12\x0e\n\x01x\x18\x03 \x01(\x05:\x03\x31\x32\x38\x12\x0e\n\x01y\x18\x04 \x01(\x05:\x03\x31\x32\x38\x12\x10\n\x04size\x18\x05 \x01(\x05:\x02\x35\x30\x12\x19\n\rfade_distance\x18\x06 \x01(\x05:\x02\x35\x30\"\x7f\n\x0fMappedParticles\x12\x1f\n\x05shape\x18\x01 \x01(\x0e\x32\x08.Shape2D:\x06\x43IRCLE\x12\x0e\n\x01x\x18\x02 \x01(\x05:\x03\x31\x32\x38\x12\x0e\n\x01y\x18\x03 \x01(\x05:\x03\x31\x32\x38\x12\x10\n\x04size\x18\x04 \x01(\x05:\x02\x35\x30\x12\x19\n\rfade_distance\x18\x05 \x01(\x05:\x02\x35\x30\"T\n\x0eMappedPingPong\x12\x12\n\x05\x63olor\x18\x01 \x01(\x05:\x03\x31\x32\x33\x12\x14\n\tdirection\x18\x02 \x01(\x05:\x01\x30\x12\x18\n\rfade_distance\x18\x03 \x01(\x05:\x01\x35*\xe3\x02\n\x0c\x43olorPalette\x12\x0b\n\x07RAINBOW\x10\x00\x12\n\n\x06\x46OREST\x10\x01\x12\t\n\x05OCEAN\x10\x02\x12\t\n\x05PARTY\x10\x03\x12\x08\n\x04HEAT\x10\x04\x12\x10\n\x0cSPRING_ANGEL\x10\x05\x12\n\n\x06SCOUTY\x10\x06\x12\x0f\n\x0bPURPLE_HEAT\x10\x07\x12\x08\n\x04LAVA\x10\x08\x12\t\n\x05\x43LOUD\x10\t\x12\x08\n\x04SAGA\x10\n\x12\t\n\x05SAGA2\x10\x0b\x12\n\n\x06SUNSET\x10\x0c\x12\r\n\tRIVENDELL\x10\r\x12\x10\n\x0cOCEAN_BREEZE\x10\x0e\x12\x07\n\x03SUN\x10\x0f\x12\x12\n\x0eSHADES_OF_PINK\x10\x14\x12\r\n\tLANDSCAPE\x10\x17\x12\x12\n\x0eRAINBOWSHERBET\x10\x19\x12\r\n\tBLUE_PINK\x10\x1a\x12\x08\n\x04HULT\x10\x1b\x12\t\n\x05JUL01\x10\x1d\x12\x0b\n\x07\x46USCHIA\x10 \x12\r\n\tCOLORFULL\x10$\x12\x14\n\x10\x42LUE_CYAN_YELLOW\x10+*\x97\x01\n\x0bStripSelect\x12\x07\n\x03\x41LL\x10\x00\x12\t\n\x05TRUNK\x10\x01\x12\x0c\n\x08\x42RANCHES\x10\x02\x12\x0b\n\x07WOLKE_1\x10\x03\x12\x0b\n\x07WOLKE_2\x10\x04\x12\x0b\n\x07WOLKE_3\x10\x05\x12\x0b\n\x07WOLKE_4\x10\x06\x12\x0b\n\x07WOLKE_5\x10\x07\x12\x0b\n\x07WOLKE_6\x10\x08\x12\x0b\n\x07WOLKE_7\x10\t\x12\x0b\n\x07WOLKE_8\x10\n*V\n\x07Shape1D\x12\x08\n\x04\x42\x41LL\x10\x00\x12\t\n\x05\x43OMET\x10\x01\x12\x10\n\x0c\x43OMET_BOUNCE\x10\x02\x12\x08\n\x04NYAN\x10\x03\x12\x0f\n\x0bNYAN_BOUNCE\x10\x04\x12\t\n\x05SOLID\x10\x05*+\n\x07Shape2D\x12\n\n\x06SQUARE\x10\x00\x12\n\n\x06\x43IRCLE\x10\x01\x12\x08\n\x04RING\x10\x02*>\n\x0cMovementType\x12\n\n\x06LINEAR\x10\x00\x12\x08\n\x04SINE\x10\x01\x12\n\n\x06\x43OSINE\x10\x02\x12\x0c\n\x08SAWTOOTH\x10\x03*0\n\tSlopeType\x12\x08\n\x04LINE\x10\x00\x12\x08\n\x04\x46ILL\x10\x01\x12\x0f\n\x0b\x43OLOR_SHIFT\x10\x02')
+  serialized_pb=_b('\n\x15\x63ommand_schemas.proto\"t\n\x0bWireMessage\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12(\n\x0e\x63ommand_params\x18\x02 \x01(\x0b\x32\x0e.CommandParamsH\x00\x12\x1e\n\ttime_sync\x18\x03 \x01(\x0b\x32\t.TimeSyncH\x00\x42\t\n\x07message\"\xcc\x06\n\rCommandParams\x12\r\n\x05index\x18\x01 \x02(\x05\x12\x15\n\x07\x65nabled\x18\x02 \x02(\x08:\x04true\x12\x17\n\nbrightness\x18\x03 \x02(\x05:\x03\x32\x35\x35\x12\x16\n\x0bstrip_index\x18\x04 \x02(\x05:\x01\x30\x12-\n\rcolor_palette\x18\x05 \x02(\x0e\x32\r.ColorPalette:\x07RAINBOW\x12\x1c\n\tmodifiers\x18\x06 \x03(\x0b\x32\t.Modifier\x12\x17\n\x05white\x18\x07 \x01(\x0b\x32\x06.WhiteH\x00\x12$\n\x0csingle_color\x18\x08 \x01(\x0b\x32\x0c.SingleColorH\x00\x12\x17\n\x05pixel\x18\t \x01(\x0b\x32\x06.PixelH\x00\x12\x1e\n\tpixel_rgb\x18\n \x01(\x0b\x32\t.PixelRGBH\x00\x12\x1b\n\x07rainbow\x18\x0b \x01(\x0b\x32\x08.RainbowH\x00\x12\x1b\n\x07sparkle\x18\x0c \x01(\x0b\x32\x08.SparkleH\x00\x12*\n\x0f\x66licker_sparkle\x18\r \x01(\x0b\x32\x0f.FlickerSparkleH\x00\x12\x1e\n\tping_pong\x18\x0e \x01(\x0b\x32\t.PingPongH\x00\x12\x19\n\x06render\x18\x0f \x01(\x0b\x32\x07.RenderH\x00\x12\x15\n\x04rain\x18\x10 \x01(\x0b\x32\x05.RainH\x00\x12\x1b\n\x07gravity\x18\x11 \x01(\x0b\x32\x08.GravityH\x00\x12%\n\x0ckaleidoscope\x18\x12 \x01(\x0b\x32\r.KaleidoscopeH\x00\x12$\n\x0cmapped_shape\x18\x13 \x01(\x0b\x32\x0c.MappedShapeH\x00\x12$\n\x0cmapped_slope\x18\x14 \x01(\x0b\x32\x0c.MappedSlopeH\x00\x12*\n\x0fmapped_triangle\x18\x15 \x01(\x0b\x32\x0f.MappedTriangleH\x00\x12,\n\x10mapped_particles\x18\x16 \x01(\x0b\x32\x10.MappedParticlesH\x00\x12+\n\x10mapped_ping_pong\x18\x17 \x01(\x0b\x32\x0f.MappedPingPongH\x00\x12\x17\n\x05twang\x18\x18 \x01(\x0b\x32\x06.TwangH\x00\x12(\n\x0e\x62\x65\x61t_equalizer\x18\x19 \x01(\x0b\x32\x0e.BeatEqualizerH\x00\x42\r\n\x0btype_params\"\x1a\n\x08TimeSync\x12\x0e\n\x06millis\x18\x01 \x02(\x04\"\xa2\x01\n\x08Modifier\x12*\n\rmovement_type\x18\x01 \x02(\x0e\x32\r.MovementType:\x04SINE\x12\x16\n\x0b\x66ield_index\x18\x02 \x02(\x05:\x01\x30\x12\x17\n\x0cperiod_100ms\x18\x03 \x02(\x05:\x01\x30\x12\x17\n\x0coffset_100ms\x18\x04 \x02(\x05:\x01\x30\x12\x0e\n\x03min\x18\x05 \x02(\x05:\x01\x30\x12\x10\n\x03max\x18\x06 \x02(\x05:\x03\x32\x35\x35\"%\n\x05White\x12\x1c\n\x11\x63olor_temperature\x18\x01 \x02(\x05:\x01\x30\"!\n\x0bSingleColor\x12\x12\n\x05\x63olor\x18\x01 \x02(\x05:\x03\x32\x32\x36\"/\n\x05Pixel\x12\x10\n\x05\x63olor\x18\x01 \x02(\x05:\x01\x30\x12\x14\n\tled_index\x18\x02 \x02(\x05:\x01\x30\"Y\n\x08PixelRGB\x12\x10\n\x03red\x18\x01 \x02(\x05:\x03\x31\x33\x30\x12\x12\n\x05green\x18\x02 \x02(\x05:\x03\x31\x33\x30\x12\x11\n\x04\x62lue\x18\x03 \x02(\x05:\x03\x31\x33\x30\x12\x14\n\tled_index\x18\x04 \x02(\x05:\x01\x30\"O\n\x07Rainbow\x12\x11\n\x05speed\x18\x01 \x02(\x05:\x02\x33\x30\x12\x16\n\twave_size\x18\x02 \x02(\x05:\x03\x31\x30\x30\x12\x19\n\x0crainbow_size\x18\x03 \x02(\x05:\x03\x31\x35\x30\"f\n\x07Sparkle\x12\x10\n\x05\x63olor\x18\x01 \x02(\x05:\x01\x31\x12\x19\n\rsparkle_width\x18\x02 \x02(\x05:\x02\x31\x35\x12\x17\n\x0bsparle_rate\x18\x03 \x02(\x05:\x02\x31\x30\x12\x15\n\x08\x64uration\x18\x04 \x02(\x05:\x03\x31\x30\x30\"\xc6\x01\n\x0e\x46lickerSparkle\x12\x12\n\x05\x63olor\x18\x01 \x02(\x05:\x03\x32\x35\x35\x12\x19\n\rsparkle_width\x18\x02 \x02(\x05:\x02\x39\x30\x12\x1f\n\x12sparles_per_second\x18\x03 \x02(\x05:\x03\x32\x31\x35\x12\x13\n\x08\x64uration\x18\x04 \x02(\x05:\x01\x38\x12\x18\n\rflicker_delay\x18\x05 \x02(\x05:\x01\x37\x12\x1b\n\x0e\x66licker_window\x18\x06 \x02(\x05:\x03\x31\x31\x39\x12\x18\n\x0cmax_flickers\x18\x07 \x02(\x05:\x02\x38\x30\"\xa3\x01\n\x08PingPong\x12\x1d\n\x05shape\x18\x01 \x02(\x0e\x32\x08.Shape1D:\x04\x42\x41LL\x12%\n\x08movement\x18\x02 \x02(\x0e\x32\r.MovementType:\x04SINE\x12\x11\n\x05\x63olor\x18\x03 \x02(\x05:\x02\x36\x35\x12\x11\n\x05width\x18\x04 \x02(\x05:\x02\x32\x30\x12\x10\n\x05\x63ount\x18\x05 \x02(\x05:\x01\x31\x12\x19\n\x0cperiod_100ms\x18\x06 \x02(\x05:\x03\x31\x30\x30\"d\n\x06Render\x12\x1d\n\x05shape\x18\x01 \x02(\x0e\x32\x08.Shape1D:\x04\x42\x41LL\x12\x12\n\x05\x63olor\x18\x02 \x02(\x05:\x03\x32\x31\x30\x12\x14\n\x08position\x18\x03 \x02(\x05:\x02\x32\x30\x12\x11\n\x05width\x18\x04 \x02(\x05:\x02\x32\x30\"_\n\x04Rain\x12\x12\n\x05\x63olor\x18\x01 \x02(\x05:\x03\x31\x35\x30\x12\x11\n\x05width\x18\x02 \x02(\x05:\x02\x31\x35\x12\x18\n\x0c\x64rop_density\x18\x03 \x02(\x05:\x02\x39\x30\x12\x16\n\ndrop_speed\x18\x04 \x02(\x05:\x02\x39\x30\"^\n\x07Gravity\x12\x11\n\x05\x63olor\x18\x01 \x02(\x05:\x02\x31\x33\x12\x17\n\x0claunch_speed\x18\x02 \x02(\x05:\x01\x30\x12\x14\n\tball_rate\x18\x03 \x02(\x05:\x01\x35\x12\x11\n\x05width\x18\x04 \x02(\x05:\x02\x37\x30\"\x0e\n\x0cKaleidoscope\"\x9f\x01\n\x0bMappedSlope\x12\x10\n\x05\x63olor\x18\x01 \x02(\x05:\x01\x31\x12$\n\nslope_type\x18\x02 \x02(\x0e\x32\n.SlopeType:\x04\x46ILL\x12\r\n\x02x1\x18\x03 \x02(\x05:\x01\x30\x12\r\n\x02y1\x18\x04 \x02(\x05:\x01\x30\x12\x0f\n\x02x2\x18\x05 \x02(\x05:\x03\x32\x35\x35\x12\x0f\n\x02y2\x18\x06 \x02(\x05:\x03\x32\x35\x35\x12\x18\n\rfade_distance\x18\x07 \x02(\x05:\x01\x35\"\x8d\x01\n\x0bMappedShape\x12\x10\n\x05\x63olor\x18\x01 \x02(\x05:\x01\x31\x12\x1f\n\x05shape\x18\x02 \x02(\x0e\x32\x08.Shape2D:\x06SQUARE\x12\x0e\n\x01x\x18\x03 \x02(\x05:\x03\x31\x32\x38\x12\x0e\n\x01y\x18\x04 \x02(\x05:\x03\x31\x32\x38\x12\x10\n\x04size\x18\x05 \x02(\x05:\x02\x35\x30\x12\x19\n\rfade_distance\x18\x06 \x02(\x05:\x02\x35\x30\"\x82\x01\n\x0eMappedTriangle\x12\x10\n\x05\x63olor\x18\x01 \x02(\x05:\x01\x31\x12\r\n\x02x1\x18\x02 \x02(\x05:\x01\x30\x12\r\n\x02y1\x18\x03 \x02(\x05:\x01\x30\x12\x0f\n\x02x2\x18\x04 \x02(\x05:\x03\x32\x35\x35\x12\r\n\x02y2\x18\x05 \x02(\x05:\x01\x30\x12\x0f\n\x02x3\x18\x06 \x02(\x05:\x03\x31\x32\x38\x12\x0f\n\x02y3\x18\x07 \x02(\x05:\x03\x32\x35\x35\"\x93\x01\n\x0fMappedParticles\x12\x12\n\x05\x63olor\x18\x01 \x02(\x05:\x03\x31\x37\x37\x12\x1f\n\x05shape\x18\x02 \x02(\x0e\x32\x08.Shape2D:\x06\x43IRCLE\x12\x0e\n\x01x\x18\x03 \x02(\x05:\x03\x31\x32\x38\x12\x0e\n\x01y\x18\x04 \x02(\x05:\x03\x31\x32\x38\x12\x10\n\x04size\x18\x05 \x02(\x05:\x02\x35\x30\x12\x19\n\rfade_distance\x18\x06 \x02(\x05:\x02\x35\x30\"T\n\x0eMappedPingPong\x12\x12\n\x05\x63olor\x18\x01 \x02(\x05:\x03\x31\x32\x33\x12\x14\n\tdirection\x18\x02 \x02(\x05:\x01\x30\x12\x18\n\rfade_distance\x18\x03 \x02(\x05:\x01\x35\"3\n\rBeatEqualizer\x12\x11\n\x05\x63olor\x18\x01 \x02(\x05:\x02\x32\x33\x12\x0f\n\x04\x62\x61nd\x18\x02 \x02(\x05:\x01\x30\"\x07\n\x05Twang*\xae\x06\n\x0c\x43olorPalette\x12\x0b\n\x07RAINBOW\x10\x00\x12\n\n\x06\x46OREST\x10\x01\x12\t\n\x05OCEAN\x10\x02\x12\t\n\x05PARTY\x10\x03\x12\x08\n\x04HEAT\x10\x04\x12\x08\n\x04LAVA\x10\x05\x12\t\n\x05\x43LOUD\x10\x06\x12\n\n\x06SCOUTY\x10\x07\x12\x0f\n\x0bPURPLE_HEAT\x10\x08\x12\x10\n\x0cSPRING_ANGEL\x10\t\x12\x08\n\x04SAGA\x10\n\x12\t\n\x05SAGA2\x10\x0b\x12\n\n\x06PARROT\x10\x0c\x12\x0f\n\x0bSUNSET_REAL\x10\r\x12\r\n\tRIVENDELL\x10\x0e\x12\x10\n\x0cOCEAN_BREEZE\x10\x0f\x12\x07\n\x03RGI\x10\x10\x12\n\n\x06RETRO2\x10\x11\x12\r\n\tANALOGOUS\x10\x12\x12\x0e\n\nPINKSPLASH\x10\x13\x12\x11\n\rSUNSET_YELLOW\x10\x14\x12\x12\n\x0e\x41NOTHER_SUNSET\x10\x15\x12\t\n\x05\x42\x45\x45\x43H\x10\x16\x12\x0b\n\x07VINTAGE\x10\x17\x12\r\n\tDEPARTURE\x10\x18\x12\r\n\tLANDSCAPE\x10\x19\x12\x0e\n\nLANDSCAPE2\x10\x1a\x12\x12\n\x0eRAINBOWSHERBET\x10\x1b\x12\x08\n\x04HULT\x10\x1c\x12\t\n\x05HULT2\x10\x1d\x12\n\n\x06\x44RYWET\x10\x1e\x12\x07\n\x03JUL\x10\x1f\x12\x0c\n\x08VINTAGE2\x10 \x12\x08\n\x04IB15\x10!\x12\x0c\n\x08TERTIARY\x10\"\x12\t\n\x05LAVA2\x10#\x12\x0e\n\nFIERCE_ICE\x10$\x12\r\n\tCOLORFULL\x10%\x12\x0f\n\x0bPINK_PURPLE\x10&\x12\n\n\x06\x41UTUMN\x10\'\x12\x1c\n\x18\x42LACK_BLUE_MAGENTA_WHITE\x10(\x12\x15\n\x11\x42LACK_MAGENTA_RED\x10)\x12\x1c\n\x18\x42LACK_RED_MAGENTA_YELLOW\x10*\x12\x14\n\x10\x42LUE_CYAN_YELLOW\x10+\x12\x0f\n\x0bORANGE_TEAL\x10,\x12\n\n\x06TIAMAT\x10-\x12\x0f\n\x0b\x41PRIL_NIGHT\x10.\x12\x0c\n\x08ORANGERY\x10/\x12\x06\n\x02\x43\x39\x10\x30\x12\n\n\x06SAKURA\x10\x31\x12\n\n\x06\x41URORA\x10\x32\x12\r\n\tATLANTICA\x10\x33\x12\x07\n\x03\x43\x39\x32\x10\x34\x12\x07\n\x03\x43\x39\x33\x10\x35\x12\x0f\n\x0bTEMPERATURE\x10\x36\x12\x0b\n\x07\x41URORA2\x10\x37*V\n\x07Shape1D\x12\x08\n\x04\x42\x41LL\x10\x00\x12\t\n\x05\x43OMET\x10\x01\x12\x10\n\x0c\x43OMET_BOUNCE\x10\x02\x12\x08\n\x04NYAN\x10\x03\x12\x0f\n\x0bNYAN_BOUNCE\x10\x04\x12\t\n\x05SOLID\x10\x05*+\n\x07Shape2D\x12\n\n\x06SQUARE\x10\x00\x12\n\n\x06\x43IRCLE\x10\x01\x12\x08\n\x04RING\x10\x02*\xe5\x01\n\x0cMovementType\x12\n\n\x06LINEAR\x10\x00\x12\x08\n\x04SINE\x10\x01\x12\r\n\tQUADRATIC\x10\x02\x12\x0c\n\x08SAWTOOTH\x10\x04\x12\x14\n\x10SAWTOOTH_REVERSE\x10\x05\x12\n\n\x06RANDOM\x10\x06\x12\x16\n\x12RANDOM_TRANSITIONS\x10\x07\x12\x0b\n\x07\x42\x45\x41TS_1\x10\t\x12\x0b\n\x07\x42\x45\x41TS_2\x10\n\x12\x0b\n\x07\x42\x45\x41TS_3\x10\x0b\x12\x0b\n\x07\x42\x45\x41TS_4\x10\x0c\x12\x0b\n\x07\x42\x45\x41TS_5\x10\r\x12\x0b\n\x07\x42\x45\x41TS_6\x10\x0e\x12\x0b\n\x07\x42\x45\x41TS_7\x10\x0f\x12\r\n\tBEATS_ALL\x10\x10*0\n\tSlopeType\x12\x08\n\x04LINE\x10\x00\x12\x08\n\x04\x46ILL\x10\x01\x12\x0f\n\x0b\x43OLOR_SHIFT\x10\x02')
 )
 
 _COLORPALETTE = _descriptor.EnumDescriptor(
@@ -50,23 +50,23 @@ _COLORPALETTE = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SPRING_ANGEL', index=5, number=5,
+      name='LAVA', index=5, number=5,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SCOUTY', index=6, number=6,
+      name='CLOUD', index=6, number=6,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='PURPLE_HEAT', index=7, number=7,
+      name='SCOUTY', index=7, number=7,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='LAVA', index=8, number=8,
+      name='PURPLE_HEAT', index=8, number=8,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='CLOUD', index=9, number=9,
+      name='SPRING_ANGEL', index=9, number=9,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
@@ -78,125 +78,190 @@ _COLORPALETTE = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SUNSET', index=12, number=12,
+      name='PARROT', index=12, number=12,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='RIVENDELL', index=13, number=13,
+      name='SUNSET_REAL', index=13, number=13,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='OCEAN_BREEZE', index=14, number=14,
+      name='RIVENDELL', index=14, number=14,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SUN', index=15, number=15,
+      name='OCEAN_BREEZE', index=15, number=15,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SHADES_OF_PINK', index=16, number=20,
+      name='RGI', index=16, number=16,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='LANDSCAPE', index=17, number=23,
+      name='RETRO2', index=17, number=17,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='RAINBOWSHERBET', index=18, number=25,
+      name='ANALOGOUS', index=18, number=18,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='BLUE_PINK', index=19, number=26,
+      name='PINKSPLASH', index=19, number=19,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='HULT', index=20, number=27,
+      name='SUNSET_YELLOW', index=20, number=20,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='JUL01', index=21, number=29,
+      name='ANOTHER_SUNSET', index=21, number=21,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='FUSCHIA', index=22, number=32,
+      name='BEECH', index=22, number=22,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='COLORFULL', index=23, number=36,
+      name='VINTAGE', index=23, number=23,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='BLUE_CYAN_YELLOW', index=24, number=43,
+      name='DEPARTURE', index=24, number=24,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LANDSCAPE', index=25, number=25,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LANDSCAPE2', index=26, number=26,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RAINBOWSHERBET', index=27, number=27,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='HULT', index=28, number=28,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='HULT2', index=29, number=29,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DRYWET', index=30, number=30,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='JUL', index=31, number=31,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='VINTAGE2', index=32, number=32,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='IB15', index=33, number=33,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TERTIARY', index=34, number=34,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LAVA2', index=35, number=35,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='FIERCE_ICE', index=36, number=36,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='COLORFULL', index=37, number=37,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PINK_PURPLE', index=38, number=38,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='AUTUMN', index=39, number=39,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BLACK_BLUE_MAGENTA_WHITE', index=40, number=40,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BLACK_MAGENTA_RED', index=41, number=41,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BLACK_RED_MAGENTA_YELLOW', index=42, number=42,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BLUE_CYAN_YELLOW', index=43, number=43,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ORANGE_TEAL', index=44, number=44,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TIAMAT', index=45, number=45,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='APRIL_NIGHT', index=46, number=46,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ORANGERY', index=47, number=47,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='C9', index=48, number=48,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SAKURA', index=49, number=49,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='AURORA', index=50, number=50,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ATLANTICA', index=51, number=51,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='C92', index=52, number=52,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='C93', index=53, number=53,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TEMPERATURE', index=54, number=54,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='AURORA2', index=55, number=55,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2248,
-  serialized_end=2603,
+  serialized_start=2998,
+  serialized_end=3812,
 )
 _sym_db.RegisterEnumDescriptor(_COLORPALETTE)
 
 ColorPalette = enum_type_wrapper.EnumTypeWrapper(_COLORPALETTE)
-_STRIPSELECT = _descriptor.EnumDescriptor(
-  name='StripSelect',
-  full_name='StripSelect',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='ALL', index=0, number=0,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='TRUNK', index=1, number=1,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='BRANCHES', index=2, number=2,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_1', index=3, number=3,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_2', index=4, number=4,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_3', index=5, number=5,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_4', index=6, number=6,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_5', index=7, number=7,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_6', index=8, number=8,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_7', index=9, number=9,
-      serialized_options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='WOLKE_8', index=10, number=10,
-      serialized_options=None,
-      type=None),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=2606,
-  serialized_end=2757,
-)
-_sym_db.RegisterEnumDescriptor(_STRIPSELECT)
-
-StripSelect = enum_type_wrapper.EnumTypeWrapper(_STRIPSELECT)
 _SHAPE1D = _descriptor.EnumDescriptor(
   name='Shape1D',
   full_name='Shape1D',
@@ -230,8 +295,8 @@ _SHAPE1D = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2759,
-  serialized_end=2845,
+  serialized_start=3814,
+  serialized_end=3900,
 )
 _sym_db.RegisterEnumDescriptor(_SHAPE1D)
 
@@ -257,8 +322,8 @@ _SHAPE2D = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2847,
-  serialized_end=2890,
+  serialized_start=3902,
+  serialized_end=3945,
 )
 _sym_db.RegisterEnumDescriptor(_SHAPE2D)
 
@@ -278,18 +343,62 @@ _MOVEMENTTYPE = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='COSINE', index=2, number=2,
+      name='QUADRATIC', index=2, number=2,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SAWTOOTH', index=3, number=3,
+      name='SAWTOOTH', index=3, number=4,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SAWTOOTH_REVERSE', index=4, number=5,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RANDOM', index=5, number=6,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='RANDOM_TRANSITIONS', index=6, number=7,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_1', index=7, number=9,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_2', index=8, number=10,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_3', index=9, number=11,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_4', index=10, number=12,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_5', index=11, number=13,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_6', index=12, number=14,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_7', index=13, number=15,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BEATS_ALL', index=14, number=16,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2892,
-  serialized_end=2954,
+  serialized_start=3948,
+  serialized_end=4177,
 )
 _sym_db.RegisterEnumDescriptor(_MOVEMENTTYPE)
 
@@ -315,8 +424,8 @@ _SLOPETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2956,
-  serialized_end=3004,
+  serialized_start=4179,
+  serialized_end=4227,
 )
 _sym_db.RegisterEnumDescriptor(_SLOPETYPE)
 
@@ -326,37 +435,57 @@ FOREST = 1
 OCEAN = 2
 PARTY = 3
 HEAT = 4
-SPRING_ANGEL = 5
-SCOUTY = 6
-PURPLE_HEAT = 7
-LAVA = 8
-CLOUD = 9
+LAVA = 5
+CLOUD = 6
+SCOUTY = 7
+PURPLE_HEAT = 8
+SPRING_ANGEL = 9
 SAGA = 10
 SAGA2 = 11
-SUNSET = 12
-RIVENDELL = 13
-OCEAN_BREEZE = 14
-SUN = 15
-SHADES_OF_PINK = 20
-LANDSCAPE = 23
-RAINBOWSHERBET = 25
-BLUE_PINK = 26
-HULT = 27
-JUL01 = 29
-FUSCHIA = 32
-COLORFULL = 36
+PARROT = 12
+SUNSET_REAL = 13
+RIVENDELL = 14
+OCEAN_BREEZE = 15
+RGI = 16
+RETRO2 = 17
+ANALOGOUS = 18
+PINKSPLASH = 19
+SUNSET_YELLOW = 20
+ANOTHER_SUNSET = 21
+BEECH = 22
+VINTAGE = 23
+DEPARTURE = 24
+LANDSCAPE = 25
+LANDSCAPE2 = 26
+RAINBOWSHERBET = 27
+HULT = 28
+HULT2 = 29
+DRYWET = 30
+JUL = 31
+VINTAGE2 = 32
+IB15 = 33
+TERTIARY = 34
+LAVA2 = 35
+FIERCE_ICE = 36
+COLORFULL = 37
+PINK_PURPLE = 38
+AUTUMN = 39
+BLACK_BLUE_MAGENTA_WHITE = 40
+BLACK_MAGENTA_RED = 41
+BLACK_RED_MAGENTA_YELLOW = 42
 BLUE_CYAN_YELLOW = 43
-ALL = 0
-TRUNK = 1
-BRANCHES = 2
-WOLKE_1 = 3
-WOLKE_2 = 4
-WOLKE_3 = 5
-WOLKE_4 = 6
-WOLKE_5 = 7
-WOLKE_6 = 8
-WOLKE_7 = 9
-WOLKE_8 = 10
+ORANGE_TEAL = 44
+TIAMAT = 45
+APRIL_NIGHT = 46
+ORANGERY = 47
+C9 = 48
+SAKURA = 49
+AURORA = 50
+ATLANTICA = 51
+C92 = 52
+C93 = 53
+TEMPERATURE = 54
+AURORA2 = 55
 BALL = 0
 COMET = 1
 COMET_BOUNCE = 2
@@ -368,12 +497,71 @@ CIRCLE = 1
 RING = 2
 LINEAR = 0
 SINE = 1
-COSINE = 2
-SAWTOOTH = 3
+QUADRATIC = 2
+SAWTOOTH = 4
+SAWTOOTH_REVERSE = 5
+RANDOM = 6
+RANDOM_TRANSITIONS = 7
+BEATS_1 = 9
+BEATS_2 = 10
+BEATS_3 = 11
+BEATS_4 = 12
+BEATS_5 = 13
+BEATS_6 = 14
+BEATS_7 = 15
+BEATS_ALL = 16
 LINE = 0
 FILL = 1
 COLOR_SHIFT = 2
 
+
+
+_WIREMESSAGE = _descriptor.Descriptor(
+  name='WireMessage',
+  full_name='WireMessage',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='sequence', full_name='WireMessage.sequence', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='command_params', full_name='WireMessage.command_params', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time_sync', full_name='WireMessage.time_sync', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='message', full_name='WireMessage.message',
+      index=0, containing_type=None, fields=[]),
+  ],
+  serialized_start=25,
+  serialized_end=141,
+)
 
 
 _COMMANDPARAMS = _descriptor.Descriptor(
@@ -392,133 +580,168 @@ _COMMANDPARAMS = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='enabled', full_name='CommandParams.enabled', index=1,
-      number=2, type=8, cpp_type=7, label=1,
+      number=2, type=8, cpp_type=7, label=2,
       has_default_value=True, default_value=True,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='brightness', full_name='CommandParams.brightness', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=255,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='strip_index', full_name='CommandParams.strip_index', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='color_palette', full_name='CommandParams.color_palette', index=4,
-      number=5, type=14, cpp_type=8, label=1,
+      number=5, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='white', full_name='CommandParams.white', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='modifiers', full_name='CommandParams.modifiers', index=5,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='single_color', full_name='CommandParams.single_color', index=6,
+      name='white', full_name='CommandParams.white', index=6,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='pixel', full_name='CommandParams.pixel', index=7,
+      name='single_color', full_name='CommandParams.single_color', index=7,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='pixel_rgb', full_name='CommandParams.pixel_rgb', index=8,
+      name='pixel', full_name='CommandParams.pixel', index=8,
       number=9, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='rainbow', full_name='CommandParams.rainbow', index=9,
+      name='pixel_rgb', full_name='CommandParams.pixel_rgb', index=9,
       number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='sparkle', full_name='CommandParams.sparkle', index=10,
+      name='rainbow', full_name='CommandParams.rainbow', index=10,
       number=11, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='flicker_sparkle', full_name='CommandParams.flicker_sparkle', index=11,
+      name='sparkle', full_name='CommandParams.sparkle', index=11,
       number=12, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='ping_pong', full_name='CommandParams.ping_pong', index=12,
+      name='flicker_sparkle', full_name='CommandParams.flicker_sparkle', index=12,
       number=13, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='render', full_name='CommandParams.render', index=13,
+      name='ping_pong', full_name='CommandParams.ping_pong', index=13,
       number=14, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='rain', full_name='CommandParams.rain', index=14,
+      name='render', full_name='CommandParams.render', index=14,
       number=15, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='kaleidoscope', full_name='CommandParams.kaleidoscope', index=15,
+      name='rain', full_name='CommandParams.rain', index=15,
       number=16, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='mapped_shape', full_name='CommandParams.mapped_shape', index=16,
+      name='gravity', full_name='CommandParams.gravity', index=16,
       number=17, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='mapped_slope', full_name='CommandParams.mapped_slope', index=17,
+      name='kaleidoscope', full_name='CommandParams.kaleidoscope', index=17,
       number=18, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='mapped_particles', full_name='CommandParams.mapped_particles', index=18,
+      name='mapped_shape', full_name='CommandParams.mapped_shape', index=18,
       number=19, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='mapped_ping_pong', full_name='CommandParams.mapped_ping_pong', index=19,
+      name='mapped_slope', full_name='CommandParams.mapped_slope', index=19,
       number=20, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='mapped_triangle', full_name='CommandParams.mapped_triangle', index=20,
+      number=21, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='mapped_particles', full_name='CommandParams.mapped_particles', index=21,
+      number=22, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='mapped_ping_pong', full_name='CommandParams.mapped_ping_pong', index=22,
+      number=23, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='twang', full_name='CommandParams.twang', index=23,
+      number=24, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='beat_equalizer', full_name='CommandParams.beat_equalizer', index=24,
+      number=25, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -538,8 +761,105 @@ _COMMANDPARAMS = _descriptor.Descriptor(
       name='type_params', full_name='CommandParams.type_params',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=26,
-  serialized_end=700,
+  serialized_start=144,
+  serialized_end=988,
+)
+
+
+_TIMESYNC = _descriptor.Descriptor(
+  name='TimeSync',
+  full_name='TimeSync',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='millis', full_name='TimeSync.millis', index=0,
+      number=1, type=4, cpp_type=4, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=990,
+  serialized_end=1016,
+)
+
+
+_MODIFIER = _descriptor.Descriptor(
+  name='Modifier',
+  full_name='Modifier',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='movement_type', full_name='Modifier.movement_type', index=0,
+      number=1, type=14, cpp_type=8, label=2,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='field_index', full_name='Modifier.field_index', index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='period_100ms', full_name='Modifier.period_100ms', index=2,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='offset_100ms', full_name='Modifier.offset_100ms', index=3,
+      number=4, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='min', full_name='Modifier.min', index=4,
+      number=5, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='max', full_name='Modifier.max', index=5,
+      number=6, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=255,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1019,
+  serialized_end=1181,
 )
 
 
@@ -552,7 +872,7 @@ _WHITE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color_temperature', full_name='White.color_temperature', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -569,8 +889,8 @@ _WHITE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=702,
-  serialized_end=739,
+  serialized_start=1183,
+  serialized_end=1220,
 )
 
 
@@ -583,7 +903,7 @@ _SINGLECOLOR = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='SingleColor.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=226,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -600,8 +920,8 @@ _SINGLECOLOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=741,
-  serialized_end=774,
+  serialized_start=1222,
+  serialized_end=1255,
 )
 
 
@@ -614,14 +934,14 @@ _PIXEL = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='Pixel.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='led_index', full_name='Pixel.led_index', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -638,8 +958,8 @@ _PIXEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=776,
-  serialized_end=823,
+  serialized_start=1257,
+  serialized_end=1304,
 )
 
 
@@ -652,28 +972,28 @@ _PIXELRGB = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='red', full_name='PixelRGB.red', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=130,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='green', full_name='PixelRGB.green', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=130,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='blue', full_name='PixelRGB.blue', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=130,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='led_index', full_name='PixelRGB.led_index', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -690,8 +1010,8 @@ _PIXELRGB = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=825,
-  serialized_end=914,
+  serialized_start=1306,
+  serialized_end=1395,
 )
 
 
@@ -704,21 +1024,21 @@ _RAINBOW = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='speed', full_name='Rainbow.speed', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=30,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='wave_size', full_name='Rainbow.wave_size', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=100,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='rainbow_size', full_name='Rainbow.rainbow_size', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=150,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -735,8 +1055,8 @@ _RAINBOW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=916,
-  serialized_end=995,
+  serialized_start=1397,
+  serialized_end=1476,
 )
 
 
@@ -749,28 +1069,28 @@ _SPARKLE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='Sparkle.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='sparkle_width', full_name='Sparkle.sparkle_width', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=15,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='sparle_rate', full_name='Sparkle.sparle_rate', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=10,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='duration', full_name='Sparkle.duration', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=100,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -787,8 +1107,8 @@ _SPARKLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=997,
-  serialized_end=1099,
+  serialized_start=1478,
+  serialized_end=1580,
 )
 
 
@@ -801,49 +1121,49 @@ _FLICKERSPARKLE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='FlickerSparkle.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=1,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=255,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='sparkle_width', full_name='FlickerSparkle.sparkle_width', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=90,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='sparles_per_second', full_name='FlickerSparkle.sparles_per_second', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=215,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='duration', full_name='FlickerSparkle.duration', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=8,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='flicker_delay', full_name='FlickerSparkle.flicker_delay', index=4,
-      number=5, type=5, cpp_type=1, label=1,
+      number=5, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=7,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='flicker_window', full_name='FlickerSparkle.flicker_window', index=5,
-      number=6, type=5, cpp_type=1, label=1,
+      number=6, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=119,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='max_flickers', full_name='FlickerSparkle.max_flickers', index=6,
-      number=7, type=5, cpp_type=1, label=1,
+      number=7, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=80,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -860,8 +1180,8 @@ _FLICKERSPARKLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1102,
-  serialized_end=1298,
+  serialized_start=1583,
+  serialized_end=1781,
 )
 
 
@@ -874,57 +1194,43 @@ _PINGPONG = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='shape', full_name='PingPong.shape', index=0,
-      number=1, type=14, cpp_type=8, label=1,
+      number=1, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='movement', full_name='PingPong.movement', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
+      number=2, type=14, cpp_type=8, label=2,
+      has_default_value=True, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='color', full_name='PingPong.color', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=65,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='width', full_name='PingPong.width', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=20,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='max_height', full_name='PingPong.max_height', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=255,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='count', full_name='PingPong.count', index=5,
-      number=6, type=5, cpp_type=1, label=1,
+      name='count', full_name='PingPong.count', index=4,
+      number=5, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='period_ms', full_name='PingPong.period_ms', index=6,
-      number=7, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=6000,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='offset_ms', full_name='PingPong.offset_ms', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=0,
+      name='period_100ms', full_name='PingPong.period_100ms', index=5,
+      number=6, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=100,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -940,8 +1246,8 @@ _PINGPONG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1301,
-  serialized_end=1511,
+  serialized_start=1784,
+  serialized_end=1947,
 )
 
 
@@ -954,28 +1260,28 @@ _RENDER = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='shape', full_name='Render.shape', index=0,
-      number=1, type=14, cpp_type=8, label=1,
+      number=1, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='color', full_name='Render.color', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=210,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='position', full_name='Render.position', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=20,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='width', full_name='Render.width', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=20,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -992,8 +1298,8 @@ _RENDER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1513,
-  serialized_end=1613,
+  serialized_start=1949,
+  serialized_end=2049,
 )
 
 
@@ -1006,29 +1312,29 @@ _RAIN = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='Rain.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=1,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=150,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='width', full_name='Rain.width', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=15,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='drop_density', full_name='Rain.drop_density', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=10,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=90,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='drop_speed', full_name='Rain.drop_speed', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=10,
+      number=4, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=90,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -1044,8 +1350,60 @@ _RAIN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1615,
-  serialized_end=1708,
+  serialized_start=2051,
+  serialized_end=2146,
+)
+
+
+_GRAVITY = _descriptor.Descriptor(
+  name='Gravity',
+  full_name='Gravity',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='color', full_name='Gravity.color', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=13,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='launch_speed', full_name='Gravity.launch_speed', index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='ball_rate', full_name='Gravity.ball_rate', index=2,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=5,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='width', full_name='Gravity.width', index=3,
+      number=4, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=70,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2148,
+  serialized_end=2242,
 )
 
 
@@ -1068,8 +1426,8 @@ _KALEIDOSCOPE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1710,
-  serialized_end=1724,
+  serialized_start=2244,
+  serialized_end=2258,
 )
 
 
@@ -1082,49 +1440,49 @@ _MAPPEDSLOPE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='MappedSlope.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='slope_type', full_name='MappedSlope.slope_type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
+      number=2, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='x1', full_name='MappedSlope.x1', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='y1', full_name='MappedSlope.y1', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='x2', full_name='MappedSlope.x2', index=4,
-      number=5, type=5, cpp_type=1, label=1,
+      number=5, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=255,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='y2', full_name='MappedSlope.y2', index=5,
-      number=6, type=5, cpp_type=1, label=1,
+      number=6, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=255,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fade_distance', full_name='MappedSlope.fade_distance', index=6,
-      number=7, type=5, cpp_type=1, label=1,
+      number=7, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=5,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1141,8 +1499,8 @@ _MAPPEDSLOPE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1727,
-  serialized_end=1886,
+  serialized_start=2261,
+  serialized_end=2420,
 )
 
 
@@ -1155,42 +1513,42 @@ _MAPPEDSHAPE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='MappedShape.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='shape', full_name='MappedShape.shape', index=1,
-      number=2, type=14, cpp_type=8, label=1,
+      number=2, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='x', full_name='MappedShape.x', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=128,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='y', full_name='MappedShape.y', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=128,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='size', full_name='MappedShape.size', index=4,
-      number=5, type=5, cpp_type=1, label=1,
+      number=5, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=50,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fade_distance', full_name='MappedShape.fade_distance', index=5,
-      number=6, type=5, cpp_type=1, label=1,
+      number=6, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=50,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1207,8 +1565,81 @@ _MAPPEDSHAPE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1889,
-  serialized_end=2030,
+  serialized_start=2423,
+  serialized_end=2564,
+)
+
+
+_MAPPEDTRIANGLE = _descriptor.Descriptor(
+  name='MappedTriangle',
+  full_name='MappedTriangle',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='color', full_name='MappedTriangle.color', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='x1', full_name='MappedTriangle.x1', index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='y1', full_name='MappedTriangle.y1', index=2,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='x2', full_name='MappedTriangle.x2', index=3,
+      number=4, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=255,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='y2', full_name='MappedTriangle.y2', index=4,
+      number=5, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='x3', full_name='MappedTriangle.x3', index=5,
+      number=6, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=128,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='y3', full_name='MappedTriangle.y3', index=6,
+      number=7, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=255,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2567,
+  serialized_end=2697,
 )
 
 
@@ -1220,36 +1651,43 @@ _MAPPEDPARTICLES = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='shape', full_name='MappedParticles.shape', index=0,
-      number=1, type=14, cpp_type=8, label=1,
+      name='color', full_name='MappedParticles.color', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=177,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='shape', full_name='MappedParticles.shape', index=1,
+      number=2, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='x', full_name='MappedParticles.x', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      name='x', full_name='MappedParticles.x', index=2,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=128,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='y', full_name='MappedParticles.y', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      name='y', full_name='MappedParticles.y', index=3,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=128,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='size', full_name='MappedParticles.size', index=3,
-      number=4, type=5, cpp_type=1, label=1,
+      name='size', full_name='MappedParticles.size', index=4,
+      number=5, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=50,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='fade_distance', full_name='MappedParticles.fade_distance', index=4,
-      number=5, type=5, cpp_type=1, label=1,
+      name='fade_distance', full_name='MappedParticles.fade_distance', index=5,
+      number=6, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=50,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1266,8 +1704,8 @@ _MAPPEDPARTICLES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2032,
-  serialized_end=2159,
+  serialized_start=2700,
+  serialized_end=2847,
 )
 
 
@@ -1280,21 +1718,21 @@ _MAPPEDPINGPONG = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='color', full_name='MappedPingPong.color', index=0,
-      number=1, type=5, cpp_type=1, label=1,
+      number=1, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=123,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='direction', full_name='MappedPingPong.direction', index=1,
-      number=2, type=5, cpp_type=1, label=1,
+      number=2, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fade_distance', full_name='MappedPingPong.fade_distance', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      number=3, type=5, cpp_type=1, label=2,
       has_default_value=True, default_value=5,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1311,11 +1749,82 @@ _MAPPEDPINGPONG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2161,
-  serialized_end=2245,
+  serialized_start=2849,
+  serialized_end=2933,
 )
 
+
+_BEATEQUALIZER = _descriptor.Descriptor(
+  name='BeatEqualizer',
+  full_name='BeatEqualizer',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='color', full_name='BeatEqualizer.color', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=23,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='band', full_name='BeatEqualizer.band', index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2935,
+  serialized_end=2986,
+)
+
+
+_TWANG = _descriptor.Descriptor(
+  name='Twang',
+  full_name='Twang',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2988,
+  serialized_end=2995,
+)
+
+_WIREMESSAGE.fields_by_name['command_params'].message_type = _COMMANDPARAMS
+_WIREMESSAGE.fields_by_name['time_sync'].message_type = _TIMESYNC
+_WIREMESSAGE.oneofs_by_name['message'].fields.append(
+  _WIREMESSAGE.fields_by_name['command_params'])
+_WIREMESSAGE.fields_by_name['command_params'].containing_oneof = _WIREMESSAGE.oneofs_by_name['message']
+_WIREMESSAGE.oneofs_by_name['message'].fields.append(
+  _WIREMESSAGE.fields_by_name['time_sync'])
+_WIREMESSAGE.fields_by_name['time_sync'].containing_oneof = _WIREMESSAGE.oneofs_by_name['message']
 _COMMANDPARAMS.fields_by_name['color_palette'].enum_type = _COLORPALETTE
+_COMMANDPARAMS.fields_by_name['modifiers'].message_type = _MODIFIER
 _COMMANDPARAMS.fields_by_name['white'].message_type = _WHITE
 _COMMANDPARAMS.fields_by_name['single_color'].message_type = _SINGLECOLOR
 _COMMANDPARAMS.fields_by_name['pixel'].message_type = _PIXEL
@@ -1326,11 +1835,15 @@ _COMMANDPARAMS.fields_by_name['flicker_sparkle'].message_type = _FLICKERSPARKLE
 _COMMANDPARAMS.fields_by_name['ping_pong'].message_type = _PINGPONG
 _COMMANDPARAMS.fields_by_name['render'].message_type = _RENDER
 _COMMANDPARAMS.fields_by_name['rain'].message_type = _RAIN
+_COMMANDPARAMS.fields_by_name['gravity'].message_type = _GRAVITY
 _COMMANDPARAMS.fields_by_name['kaleidoscope'].message_type = _KALEIDOSCOPE
 _COMMANDPARAMS.fields_by_name['mapped_shape'].message_type = _MAPPEDSHAPE
 _COMMANDPARAMS.fields_by_name['mapped_slope'].message_type = _MAPPEDSLOPE
+_COMMANDPARAMS.fields_by_name['mapped_triangle'].message_type = _MAPPEDTRIANGLE
 _COMMANDPARAMS.fields_by_name['mapped_particles'].message_type = _MAPPEDPARTICLES
 _COMMANDPARAMS.fields_by_name['mapped_ping_pong'].message_type = _MAPPEDPINGPONG
+_COMMANDPARAMS.fields_by_name['twang'].message_type = _TWANG
+_COMMANDPARAMS.fields_by_name['beat_equalizer'].message_type = _BEATEQUALIZER
 _COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
   _COMMANDPARAMS.fields_by_name['white'])
 _COMMANDPARAMS.fields_by_name['white'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
@@ -1362,6 +1875,9 @@ _COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
   _COMMANDPARAMS.fields_by_name['rain'])
 _COMMANDPARAMS.fields_by_name['rain'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
 _COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
+  _COMMANDPARAMS.fields_by_name['gravity'])
+_COMMANDPARAMS.fields_by_name['gravity'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
+_COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
   _COMMANDPARAMS.fields_by_name['kaleidoscope'])
 _COMMANDPARAMS.fields_by_name['kaleidoscope'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
 _COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
@@ -1371,18 +1887,31 @@ _COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
   _COMMANDPARAMS.fields_by_name['mapped_slope'])
 _COMMANDPARAMS.fields_by_name['mapped_slope'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
 _COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
+  _COMMANDPARAMS.fields_by_name['mapped_triangle'])
+_COMMANDPARAMS.fields_by_name['mapped_triangle'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
+_COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
   _COMMANDPARAMS.fields_by_name['mapped_particles'])
 _COMMANDPARAMS.fields_by_name['mapped_particles'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
 _COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
   _COMMANDPARAMS.fields_by_name['mapped_ping_pong'])
 _COMMANDPARAMS.fields_by_name['mapped_ping_pong'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
+_COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
+  _COMMANDPARAMS.fields_by_name['twang'])
+_COMMANDPARAMS.fields_by_name['twang'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
+_COMMANDPARAMS.oneofs_by_name['type_params'].fields.append(
+  _COMMANDPARAMS.fields_by_name['beat_equalizer'])
+_COMMANDPARAMS.fields_by_name['beat_equalizer'].containing_oneof = _COMMANDPARAMS.oneofs_by_name['type_params']
+_MODIFIER.fields_by_name['movement_type'].enum_type = _MOVEMENTTYPE
 _PINGPONG.fields_by_name['shape'].enum_type = _SHAPE1D
 _PINGPONG.fields_by_name['movement'].enum_type = _MOVEMENTTYPE
 _RENDER.fields_by_name['shape'].enum_type = _SHAPE1D
 _MAPPEDSLOPE.fields_by_name['slope_type'].enum_type = _SLOPETYPE
 _MAPPEDSHAPE.fields_by_name['shape'].enum_type = _SHAPE2D
 _MAPPEDPARTICLES.fields_by_name['shape'].enum_type = _SHAPE2D
+DESCRIPTOR.message_types_by_name['WireMessage'] = _WIREMESSAGE
 DESCRIPTOR.message_types_by_name['CommandParams'] = _COMMANDPARAMS
+DESCRIPTOR.message_types_by_name['TimeSync'] = _TIMESYNC
+DESCRIPTOR.message_types_by_name['Modifier'] = _MODIFIER
 DESCRIPTOR.message_types_by_name['White'] = _WHITE
 DESCRIPTOR.message_types_by_name['SingleColor'] = _SINGLECOLOR
 DESCRIPTOR.message_types_by_name['Pixel'] = _PIXEL
@@ -1393,18 +1922,28 @@ DESCRIPTOR.message_types_by_name['FlickerSparkle'] = _FLICKERSPARKLE
 DESCRIPTOR.message_types_by_name['PingPong'] = _PINGPONG
 DESCRIPTOR.message_types_by_name['Render'] = _RENDER
 DESCRIPTOR.message_types_by_name['Rain'] = _RAIN
+DESCRIPTOR.message_types_by_name['Gravity'] = _GRAVITY
 DESCRIPTOR.message_types_by_name['Kaleidoscope'] = _KALEIDOSCOPE
 DESCRIPTOR.message_types_by_name['MappedSlope'] = _MAPPEDSLOPE
 DESCRIPTOR.message_types_by_name['MappedShape'] = _MAPPEDSHAPE
+DESCRIPTOR.message_types_by_name['MappedTriangle'] = _MAPPEDTRIANGLE
 DESCRIPTOR.message_types_by_name['MappedParticles'] = _MAPPEDPARTICLES
 DESCRIPTOR.message_types_by_name['MappedPingPong'] = _MAPPEDPINGPONG
+DESCRIPTOR.message_types_by_name['BeatEqualizer'] = _BEATEQUALIZER
+DESCRIPTOR.message_types_by_name['Twang'] = _TWANG
 DESCRIPTOR.enum_types_by_name['ColorPalette'] = _COLORPALETTE
-DESCRIPTOR.enum_types_by_name['StripSelect'] = _STRIPSELECT
 DESCRIPTOR.enum_types_by_name['Shape1D'] = _SHAPE1D
 DESCRIPTOR.enum_types_by_name['Shape2D'] = _SHAPE2D
 DESCRIPTOR.enum_types_by_name['MovementType'] = _MOVEMENTTYPE
 DESCRIPTOR.enum_types_by_name['SlopeType'] = _SLOPETYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+WireMessage = _reflection.GeneratedProtocolMessageType('WireMessage', (_message.Message,), dict(
+  DESCRIPTOR = _WIREMESSAGE,
+  __module__ = 'command_schemas_pb2'
+  # @@protoc_insertion_point(class_scope:WireMessage)
+  ))
+_sym_db.RegisterMessage(WireMessage)
 
 CommandParams = _reflection.GeneratedProtocolMessageType('CommandParams', (_message.Message,), dict(
   DESCRIPTOR = _COMMANDPARAMS,
@@ -1412,6 +1951,20 @@ CommandParams = _reflection.GeneratedProtocolMessageType('CommandParams', (_mess
   # @@protoc_insertion_point(class_scope:CommandParams)
   ))
 _sym_db.RegisterMessage(CommandParams)
+
+TimeSync = _reflection.GeneratedProtocolMessageType('TimeSync', (_message.Message,), dict(
+  DESCRIPTOR = _TIMESYNC,
+  __module__ = 'command_schemas_pb2'
+  # @@protoc_insertion_point(class_scope:TimeSync)
+  ))
+_sym_db.RegisterMessage(TimeSync)
+
+Modifier = _reflection.GeneratedProtocolMessageType('Modifier', (_message.Message,), dict(
+  DESCRIPTOR = _MODIFIER,
+  __module__ = 'command_schemas_pb2'
+  # @@protoc_insertion_point(class_scope:Modifier)
+  ))
+_sym_db.RegisterMessage(Modifier)
 
 White = _reflection.GeneratedProtocolMessageType('White', (_message.Message,), dict(
   DESCRIPTOR = _WHITE,
@@ -1483,6 +2036,13 @@ Rain = _reflection.GeneratedProtocolMessageType('Rain', (_message.Message,), dic
   ))
 _sym_db.RegisterMessage(Rain)
 
+Gravity = _reflection.GeneratedProtocolMessageType('Gravity', (_message.Message,), dict(
+  DESCRIPTOR = _GRAVITY,
+  __module__ = 'command_schemas_pb2'
+  # @@protoc_insertion_point(class_scope:Gravity)
+  ))
+_sym_db.RegisterMessage(Gravity)
+
 Kaleidoscope = _reflection.GeneratedProtocolMessageType('Kaleidoscope', (_message.Message,), dict(
   DESCRIPTOR = _KALEIDOSCOPE,
   __module__ = 'command_schemas_pb2'
@@ -1504,6 +2064,13 @@ MappedShape = _reflection.GeneratedProtocolMessageType('MappedShape', (_message.
   ))
 _sym_db.RegisterMessage(MappedShape)
 
+MappedTriangle = _reflection.GeneratedProtocolMessageType('MappedTriangle', (_message.Message,), dict(
+  DESCRIPTOR = _MAPPEDTRIANGLE,
+  __module__ = 'command_schemas_pb2'
+  # @@protoc_insertion_point(class_scope:MappedTriangle)
+  ))
+_sym_db.RegisterMessage(MappedTriangle)
+
 MappedParticles = _reflection.GeneratedProtocolMessageType('MappedParticles', (_message.Message,), dict(
   DESCRIPTOR = _MAPPEDPARTICLES,
   __module__ = 'command_schemas_pb2'
@@ -1517,6 +2084,20 @@ MappedPingPong = _reflection.GeneratedProtocolMessageType('MappedPingPong', (_me
   # @@protoc_insertion_point(class_scope:MappedPingPong)
   ))
 _sym_db.RegisterMessage(MappedPingPong)
+
+BeatEqualizer = _reflection.GeneratedProtocolMessageType('BeatEqualizer', (_message.Message,), dict(
+  DESCRIPTOR = _BEATEQUALIZER,
+  __module__ = 'command_schemas_pb2'
+  # @@protoc_insertion_point(class_scope:BeatEqualizer)
+  ))
+_sym_db.RegisterMessage(BeatEqualizer)
+
+Twang = _reflection.GeneratedProtocolMessageType('Twang', (_message.Message,), dict(
+  DESCRIPTOR = _TWANG,
+  __module__ = 'command_schemas_pb2'
+  # @@protoc_insertion_point(class_scope:Twang)
+  ))
+_sym_db.RegisterMessage(Twang)
 
 
 # @@protoc_insertion_point(module_scope)
