@@ -10,19 +10,19 @@ from itertools import chain
 from datetime import datetime
 
 #camera to use
-WEBCAM_INDEX = 2# 0 first device, 2 second device
+WEBCAM_INDEX = 1# 0 first device, 2 second device
 
 #net settings
 # UDP_IP = "127.0.0.1"
-UDP_IP = "192.168.42.217"
+UDP_IP = "192.168.42.39"
 UDP_PORT = 1337
 COMMAND_ACK_TIMEOUT = 0.5 #seconds
 COMMAND_ACK_BYTE = bytes([42])
 NR_OF_COMMAND_SEND_TRIES = 50
 
 # strip and pixel ranges to cover
-STRIP_RANGE = range(0,1)
-PIXEL_RANGE = range(0,299)
+STRIP_RANGE = range(1,11)
+PIXEL_RANGE = range(0,248)
 TRUNK_STRIP_RANGE  = range(3,11)
 TRUNK_PIXEL_RANGE  = range(0,50)
 BRANCH_STRIP_RANGE = chain(range(11, 15), range(16, 20), range(21, 23))  # skip strips 12,17
@@ -128,7 +128,7 @@ def send_bytes_with_ack(bytes_to_send):
 	try:
 		response_byte = sock.recv(1)#block until ack byte is received or timeout error is raised
 		if response_byte == COMMAND_ACK_BYTE:#check response
-			#print("Response ACK OK.")
+			print("Response ACK OK.")
 			return True
 		else:
 			print("Response ACK Wrong.")
@@ -138,12 +138,20 @@ def send_bytes_with_ack(bytes_to_send):
 		return False
 			
 	
-def set_color(strip,hue):
+def set_color(strip, hue):
 	single_color = command_schemas_pb2.SingleColor()
 	single_color.color = hue
-	cmd = command_schemas_pb2.CommandParams(single_color=single_color, enabled=True, brightness=255, strip_index=0, color_palette=command_schemas_pb2.RAINBOW)		
+
+	cmd = command_schemas_pb2.CommandParams(single_color=single_color)	
 	cmd.index = 0
-	send_command(cmd.SerializeToString())
+	cmd.enabled = True
+	cmd.brightness = 255
+	cmd.strip_index = 0
+	cmd.color_palette = command_schemas_pb2.RAINBOW
+
+	message = command_schemas_pb2.WireMessage(command_params=cmd, sequence=0)
+	binary = message.SerializeToString()
+	send_command(binary)
 	
 # def update_settings(palette,color_temp, display_mode):
 # 	command_bytes = bytearray()
@@ -175,7 +183,8 @@ def set_pixel_rgb_stream(strip,pixel, red, green, blue):
 		pixel_rgb=pixel_rgb, enabled=True, brightness=255, strip_index=0, color_palette=command_schemas_pb2.RAINBOW)
 	cmd.index = 0
 	cmd.strip_index = strip
-	send_command(cmd.SerializeToString())
+	message = command_schemas_pb2.WireMessage(command_params=cmd, sequence=0)
+	send_command(message.SerializeToString())
 	
 def disable_all():
 	for index in range(0,15):
@@ -187,7 +196,8 @@ def disable_all():
 			strip_index=0, 
 			color_palette=command_schemas_pb2.RAINBOW,
 			enabled=False)
-		send_command(cmd.SerializeToString())
+		message = command_schemas_pb2.WireMessage(command_params=cmd, sequence=0)
+		send_command(message.SerializeToString())
 		time.sleep(0.05)
 		
 #camera functions
@@ -340,8 +350,8 @@ y_min = None
 y_max = None
 mapping_size = 0
 
-for current_section in ["branches","trunk"]:
-# for current_section in ["strip"]:
+# for current_section in ["branches","trunk"]:
+for current_section in ["strip"]:
 	if current_section == "branches":
 		strip_range = BRANCH_STRIP_RANGE
 		pixel_range = BRANCH_PIXEL_RANGE
