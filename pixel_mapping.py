@@ -13,16 +13,16 @@ from datetime import datetime
 WEBCAM_INDEX = 1# 0 first device, 2 second device
 
 #net settings
-# UDP_IP = "127.0.0.1"
-UDP_IP = "192.168.42.39"
+UDP_IP = "127.0.0.1"
+# UDP_IP = "192.168.0.96"
 UDP_PORT = 1337
 COMMAND_ACK_TIMEOUT = 0.5 #seconds
 COMMAND_ACK_BYTE = bytes([42])
 NR_OF_COMMAND_SEND_TRIES = 50
 
 # strip and pixel ranges to cover
-STRIP_RANGE = range(1,11)
-PIXEL_RANGE = range(0,248)
+STRIP_RANGE = range(1,2)
+PIXEL_RANGE = range(0,295)
 TRUNK_STRIP_RANGE  = range(3,11)
 TRUNK_PIXEL_RANGE  = range(0,50)
 BRANCH_STRIP_RANGE = chain(range(11, 15), range(16, 20), range(21, 23))  # skip strips 12,17
@@ -128,7 +128,6 @@ def send_bytes_with_ack(bytes_to_send):
 	try:
 		response_byte = sock.recv(1)#block until ack byte is received or timeout error is raised
 		if response_byte == COMMAND_ACK_BYTE:#check response
-			print("Response ACK OK.")
 			return True
 		else:
 			print("Response ACK Wrong.")
@@ -187,7 +186,7 @@ def set_pixel_rgb_stream(strip,pixel, red, green, blue):
 	send_command(message.SerializeToString())
 	
 def disable_all():
-	for index in range(0,15):
+	for index in range(0,8):
 		single_color = command_schemas_pb2.SingleColor(color=150)
 		cmd = command_schemas_pb2.CommandParams(
 			index=index, 
@@ -313,7 +312,6 @@ sock = socket.socket(socket.AF_INET, # Internet
 #blink and reset tree pixels
 text_file = open("mapping.h", "w")
 text_file.write("//Mapping started on "+datetime.now().strftime("%d.%m.%Y, %H:%M:%S")+"\n")
-text_file.write("float LedStructure::mapping[][4] = {\n")
 
 cv2.namedWindow("live_view")
 cv2.namedWindow("difference_image")
@@ -349,6 +347,7 @@ x_max = None
 y_min = None
 y_max = None
 mapping_size = 0
+mapping = []
 
 # for current_section in ["branches","trunk"]:
 for current_section in ["strip"]:
@@ -375,10 +374,8 @@ for current_section in ["strip"]:
 				else:
 					print ("section "+current_section+", strip "+str(current_strip)+", pixel "+str(current_pixel)+": "+str(nr_of_points) + " points detetected, main point at "+str(x_pos)+", " + str(y_pos))
 					
-					#write out the data to the file
-					if (mapping_size != 0):#skip the comma for the very first entry, always use it for all other entrys
-						text_file.write(",\n")
-					text_file.write("{"+str(current_strip)+","+str(current_pixel)+","+str(x_pos)+"," + str(y_pos)+"}")
+					#store data
+					mapping.append([current_strip,current_pixel,x_pos,y_pos])
 					
 					#update min/max and size for detected pixels
 					if (mapping_size == 0):#set min/max to the values of the very first pixel
@@ -394,18 +391,44 @@ for current_section in ["strip"]:
 					mapping_size += 1
 					break#break out of retry loop
 
+
+
 #exit	
 cv2.destroyWindow("live_view")
 cv2.destroyWindow("difference_image")
 cv2.destroyWindow("thresholded_image")
+
+print("[INFO] mapping finished, writing to file")
+
+# scale mapping so coordinates are in a 16 by 16 square
+# todo: move square to center of smaller side
+scale = max(x_max-x_min,y_max-y_min)/16
+print("[INFO] x_min" + str(x_min) + ", x_max" + str(x_max) + ", y_min" + str(y_min) + ", y_max" + str(y_max) + ", scale: " + str(scale))
+
+
+text_file.write("#define MAPPING_X_MIN 0\n")
+text_file.write("#define MAPPING_X_MAX 16\n")
+text_file.write("#define MAPPING_Y_MIN 0\n")
+text_file.write("#define MAPPING_Y_MAX 16\n")
+text_file.write("#define MAPPING_SIZE "+str(mapping_size)+"\n\n")
+
+text_file.write("float LedStructure::mapping[][4] PROGMEM = {\n")
+
+#write out the data to the file
+for i, led in enumerate(mapping):
+	if (i != 0):# skip the comma for the very first entry
+		text_file.write(",\n")
+
+	text_file.write("{"+str(led[0])+","+str(led[1])+","+str((led[2]-x_min)/scale)+"," + str((led[3]-y_min)/scale)+"}")
+	
 #write file footer content
 text_file.write("};\n")
-text_file.write("#define MAPPING_X_MIN "+str(x_min)+"\n")
-text_file.write("#define MAPPING_X_MAX "+str(x_max)+"\n")
-text_file.write("#define MAPPING_Y_MIN "+str(y_min)+"\n")
-text_file.write("#define MAPPING_Y_MAX "+str(y_max)+"\n")
-text_file.write("#define MAPPING_SIZE "+str(mapping_size)+"\n")
+
 text_file.write("//Mapping finished on "+datetime.now().strftime("%d.%m.%Y, %H:%M:%S")+"\n")
 text_file.close()
 print("[INFO] exiting...")
 
+
+					#write out the data to the file
+
+					
