@@ -16,19 +16,23 @@ import matplotlib.pyplot as plt
 LED_PITCH = 1 # base units
 LED_START_OFFSET = 1 # base units
 LED_PER_EDGE = 5
+EDGE_END = LED_PER_EDGE - 1
+THETA_TO_Z = (90-53.74) # thet down from z axis for non-flat edges
+THETA_FLAT = 90
 
 print("Starting calculations...")
 edges =[]
 
 edge_config =[ # base vector indexes and angles of edge, (angles azimut and polar) [edge index,led_index, theta, phi]
     # edge, led, azimut theta from top z-axis, polar phi in direction of x-axis
-    [0, 0, 90, 45], # 0
-    #[0, 0, 90, 0],
-    #[0, 0, 60, 53.74],#54.74 deg
-    #[0, 0, 23, 90],
-    #[0, 0, 24, 90],
+    [0, 0, THETA_FLAT, 0], # 0
+    [0, 0, THETA_FLAT, 60], # 1
+    [0, 0, THETA_TO_Z, 30], # 2
+    
+    [0, EDGE_END, THETA_TO_Z, 90+30+30], # 3
+    [0, EDGE_END, THETA_FLAT, 90+30], # 4
+    [1, EDGE_END, THETA_TO_Z, 90+90+90], # 5
 
-    # [0, (LED_PER_EDGE-1), 20, 91], # 5
     # [0, (LED_PER_EDGE-1), 20, 92],
     # [0, (LED_PER_EDGE-1), 20, 93],
     # [0, (LED_PER_EDGE-1), 20, 94],
