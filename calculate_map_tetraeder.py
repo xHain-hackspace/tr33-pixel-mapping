@@ -74,39 +74,40 @@ for replica_index, replica_base_vector in enumerate(replication_config): # itera
 
 # debug plotting
 print("Starting debug plot...")
-# matplotlib is slow
-fig = plt.figure()
-ax = fig.add_subplot(projection='3d')
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-ax.axes.set_xlim3d(left=0, right=10) 
-ax.axes.set_ylim3d(bottom=0, top=10) 
-ax.axes.set_zlim3d(bottom=0, top=10) 
 
+# # matplotlib is slow
+# fig = plt.figure()
+# ax = fig.add_subplot(projection='3d')
+# ax.set_xlabel('X')
+# ax.set_ylabel('Y')
+# ax.set_zlabel('Z')
+# ax.axes.set_xlim3d(left=0, right=10) 
+# ax.axes.set_ylim3d(bottom=0, top=10) 
+# ax.axes.set_zlim3d(bottom=0, top=10) 
+
+# for curr_edge in edges:
+#     for led_vector in curr_edge:
+#         ax.scatter(led_vector[0], led_vector[1], led_vector[2], marker='o')
+
+# plt.show()
+
+fig = go.Figure(data =[go.Scatter3d(mode ='markers')])
+
+xi = []
+yi = []
+zi = []
+
+# this is probably not efficient
 for curr_edge in edges:
     for led_vector in curr_edge:
-        ax.scatter(led_vector[0], led_vector[1], led_vector[2], marker='o')
+        xi.append(led_vector[0])
+        yi.append(led_vector[1])
+        zi.append(led_vector[2])
 
-plt.show()
-# # use faster alternative for plotting
-# leds_coordinates_f=[
-#     np.array([0,0,0]),
-#     np.array([1,1,1]),
-#     np.array([2,2,2]),
-#     np.array([0,0,10]),
-# ]
-# xi = [v[0] for v in leds_coordinates_f]
-# yi = [v[1] for v in leds_coordinates_f]
-# zi = [v[2] for v in leds_coordinates_f]
-
-# marker_data = go.Scatter3d(
-#     x= xi, 
-#     y= yi, 
-#     z= zi, 
-#     marker=go.scatter3d.Marker(size=3), 
-#     opacity=0.8, 
-#     mode='markers'
-# )
-# fig=go.Figure(data=marker_data)
-# fig.show()
+fig.add_trace(
+    go.Scatter3d(x= xi,
+                y= yi,
+                z= zi,
+                mode='markers')
+)
+fig.show()
