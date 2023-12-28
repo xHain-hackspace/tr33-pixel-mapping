@@ -93,21 +93,30 @@ print("Starting debug plot...")
 
 fig = go.Figure(data =[go.Scatter3d(mode ='markers')])
 
-xi = []
-yi = []
-zi = []
-
-# this is probably not efficient
+# this is probably not efficient: assemble x,y,z vectors per edge and add to plot
+edge = -1
 for curr_edge in edges:
+    edge += 1
+    xi = []
+    yi = []
+    zi = []    
     for led_vector in curr_edge:
         xi.append(led_vector[0])
         yi.append(led_vector[1])
         zi.append(led_vector[2])
-
-fig.add_trace(
-    go.Scatter3d(x= xi,
-                y= yi,
-                z= zi,
-                mode='markers')
-)
+    
+    # add points for every edge
+    fig.add_trace(
+        go.Scatter3d(x= xi,
+                    y= yi,
+                    z= zi,
+                    mode='markers',
+                    marker=dict(
+                        size=2,
+                        color= edge,  # set color to an array/list of desired values
+                        opacity=0.8
+                    )
+        )
+    )
+# show
 fig.show()
