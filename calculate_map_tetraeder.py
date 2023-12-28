@@ -50,6 +50,8 @@ base_shape_edge_config =[ # base vector pointing to edge start, angles azimut an
 replication_config = [
     np.array([0,0,0]),
     vector_from_angles(FULL_EDGE_LENGTH, THETA_TO_Z, 30),
+    vector_from_angles(FULL_EDGE_LENGTH, THETA_FLAT, 0),
+    vector_from_angles(FULL_EDGE_LENGTH, THETA_FLAT, 60),
 ]
 for replica_index, replica_base_vector in enumerate(replication_config): # iterate over all shape replicas
     for edge_index, curr_edge in enumerate(base_shape_edge_config): # for every edge of the base shape edges
