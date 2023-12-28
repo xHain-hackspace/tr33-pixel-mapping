@@ -1,6 +1,7 @@
 import math
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt #too slow
+import plotly.graph_objects as go
 
 def vector_from_angles(magnitude, theta, phi):
         """Create a vector from magnitude and directon angles"""
@@ -30,7 +31,8 @@ THETA_FLAT = 90
 FULL_EDGE_LENGTH =  CAP_TIP_OFFSET*2 + (LED_PITCH * LED_PER_EDGE) # full geometrical edge length including caps
 ORIGIN = np.array([0, 0, 0]) # zero vector
 print("Starting calculations...")
-led_coordinates =[]
+edges =[]
+edges_global_index = -1
 
 # config of the basic shape, e.g. one sub-tetraeder
 EDGE0_END = vector_from_angles(FULL_EDGE_LENGTH, THETA_FLAT, 0)
@@ -55,25 +57,24 @@ replication_config = [
 ]
 for replica_index, replica_base_vector in enumerate(replication_config): # iterate over all shape replicas
     for edge_index, curr_edge in enumerate(base_shape_edge_config): # for every edge of the base shape edges
-        led_coordinates.append([]) # add new edge to leds global list
-
+        # prepare new edge slot
+        edges.append([])
+        edges_global_index += 1
         # get edge config from base shape config
         edge_base_vector, theta, phi = curr_edge 
-
-        nr_of_base_edges = len(base_shape_edge_config)
-        global_index = (replica_index * nr_of_base_edges) + edge_index
         
         # add LEDs
         for curr_led in range(LED_PER_EDGE):
             magnitude = CAP_TIP_OFFSET + (curr_led* LED_PITCH)
             led_vector_local = vector_from_angles(magnitude, theta, phi)
             led_vector = led_vector_local + edge_base_vector + replica_base_vector
-            led_coordinates[global_index].append(led_vector)
+            edges[edges_global_index].append(led_vector)
             #print(x,y,z)
         
 
 # debug plotting
 print("Starting debug plot...")
+# matplotlib is slow
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 ax.set_xlabel('X')
@@ -83,8 +84,29 @@ ax.axes.set_xlim3d(left=0, right=10)
 ax.axes.set_ylim3d(bottom=0, top=10) 
 ax.axes.set_zlim3d(bottom=0, top=10) 
 
-for edge in led_coordinates:
-    for led_vector in edge:
+for curr_edge in edges:
+    for led_vector in curr_edge:
         ax.scatter(led_vector[0], led_vector[1], led_vector[2], marker='o')
 
 plt.show()
+# # use faster alternative for plotting
+# leds_coordinates_f=[
+#     np.array([0,0,0]),
+#     np.array([1,1,1]),
+#     np.array([2,2,2]),
+#     np.array([0,0,10]),
+# ]
+# xi = [v[0] for v in leds_coordinates_f]
+# yi = [v[1] for v in leds_coordinates_f]
+# zi = [v[2] for v in leds_coordinates_f]
+
+# marker_data = go.Scatter3d(
+#     x= xi, 
+#     y= yi, 
+#     z= zi, 
+#     marker=go.scatter3d.Marker(size=3), 
+#     opacity=0.8, 
+#     mode='markers'
+# )
+# fig=go.Figure(data=marker_data)
+# fig.show()
