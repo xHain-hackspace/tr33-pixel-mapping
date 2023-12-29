@@ -30,6 +30,7 @@ THETA_TO_Z = (90-53.74) # theta down from z axis for non-flat edges
 THETA_FLAT = 90
 FULL_EDGE_LENGTH =  CAP_TIP_OFFSET*2 + (LED_PITCH * LED_PER_EDGE) # full geometrical edge length including caps
 ORIGIN = np.array([0, 0, 0]) # zero vector
+SCALE_FACTOR = 1/2*8 # scale 2m to 8
 print("Starting calculations...")
 edges =[]
 edges_global_index = -1
@@ -68,9 +69,10 @@ for replica_index, replica_base_vector in enumerate(replication_config): # itera
             magnitude = CAP_TIP_OFFSET + (curr_led* LED_PITCH)
             led_vector_local = vector_from_angles(magnitude, theta, phi)
             led_vector = led_vector_local + edge_base_vector + replica_base_vector
+            led_vector = SCALE_FACTOR * led_vector
             edges[edges_global_index].append(led_vector)
             #print(x,y,z)
-        
+                    
 
 # debug plotting
 print("Starting debug plot...")
@@ -94,16 +96,26 @@ print("Starting debug plot...")
 fig = go.Figure(data =[go.Scatter3d(mode ='markers')])
 
 # this is probably not efficient: assemble x,y,z vectors per edge and add to plot
-edge = -1
+edge_nr = -1
+sourcecode = "{ "
 for curr_edge in edges:
-    edge += 1
+    edge_nr += 1
+    led_nr = -1
     xi = []
     yi = []
     zi = []    
     for led_vector in curr_edge:
-        xi.append(led_vector[0])
-        yi.append(led_vector[1])
-        zi.append(led_vector[2])
+        led_nr += 1
+        # get components
+        x = led_vector[0]
+        y = led_vector[1]
+        z = led_vector[2]
+        # add to vectors for debug plot
+        xi.append(x)
+        yi.append(y)
+        zi.append(z)
+        # add sourcecode line
+        sourcecode += f"{{{edge_nr}, {led_nr}, {x:.6f}, {y:.6f}, {z:.6f}}},\n"
     
     # add points for every edge
     fig.add_trace(
@@ -113,10 +125,13 @@ for curr_edge in edges:
                     mode='markers',
                     marker=dict(
                         size=2,
-                        color= edge,  # set color to an array/list of desired values
+                        color= edge_nr,  # set color to an array/list of desired values
                         opacity=0.8
                     )
         )
     )
 # show
 fig.show()
+# maybe remove last comma here
+sourcecode += " }\n"
+print(sourcecode)
