@@ -133,4 +133,6 @@ for curr_edge in edges:
 fig.show()
 # maybe remove last comma here
 sourcecode += " }\n"
-print(sourcecode)
+#print(sourcecode)
+with open("mapping.txt", "w") as text_file:
+    text_file.write(sourcecode)
