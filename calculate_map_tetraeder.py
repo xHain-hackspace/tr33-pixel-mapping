@@ -22,10 +22,9 @@ def vector_from_angles(magnitude, theta, phi):
 #y-Komponente: ay=asin(θ)sin(φ)
 #z-Komponente: az=acos(θ)
 
-LED_PITCH = 1 # base units
-CAP_TIP_OFFSET = 1 # base units, cap tip to first/last LED
-LED_PER_EDGE = 5
-EDGE_END = LED_PER_EDGE - 1
+LED_PITCH = 1/60 # meter
+CAP_TIP_OFFSET = 6/100 # meter, cap tip to first/last LED
+LED_PER_EDGE = 59
 THETA_TO_Z = (90-53.74) # theta down from z axis for non-flat edges
 THETA_FLAT = 90
 FULL_EDGE_LENGTH =  CAP_TIP_OFFSET*2 + (LED_PITCH * LED_PER_EDGE) # full geometrical edge length including caps
@@ -124,9 +123,9 @@ for curr_edge in edges:
                     z= zi,
                     mode='markers',
                     marker=dict(
-                        size=2,
+                        size=0.9,
                         color= edge_nr,  # set color to an array/list of desired values
-                        opacity=0.8
+                        opacity=1
                     )
         )
     )
