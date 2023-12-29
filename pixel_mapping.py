@@ -400,19 +400,19 @@ cv2.destroyWindow("thresholded_image")
 
 print("[INFO] mapping finished, writing to file")
 
-# scale mapping so coordinates are in a 16 by 16 square
+# scale mapping so coordinates are in a 8 by 8 square
 # todo: move square to center of smaller side
-scale = max(x_max-x_min,y_max-y_min)/16
+scale = max(x_max-x_min,y_max-y_min)/8
 print("[INFO] x_min" + str(x_min) + ", x_max" + str(x_max) + ", y_min" + str(y_min) + ", y_max" + str(y_max) + ", scale: " + str(scale))
 
 
 text_file.write("#define MAPPING_X_MIN 0\n")
-text_file.write("#define MAPPING_X_MAX 16\n")
+text_file.write("#define MAPPING_X_MAX 8\n")
 text_file.write("#define MAPPING_Y_MIN 0\n")
-text_file.write("#define MAPPING_Y_MAX 16\n")
+text_file.write("#define MAPPING_Y_MAX 8\n")
 text_file.write("#define MAPPING_SIZE "+str(mapping_size)+"\n\n")
 
-text_file.write("float LedStructure::mapping[][4] PROGMEM = {\n")
+text_file.write("const float LedStructure::mapping[][4] PROGMEM = {\n")
 
 #write out the data to the file
 for i, led in enumerate(mapping):
